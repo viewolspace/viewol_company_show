@@ -47,7 +47,7 @@
                 <div class="mt-2 desc">喜欢就点个赞吧</div>
                 <div class="mt-1 count">({{praise.length}}赞)</div>
                 <div class="mt-2 pl-3 pr-3 text-left people">
-                    <span v-for="item in praise">哈密猫, </span>
+                    <span v-for="item in praise">{{item.userName}}, </span>
                 </div>
             </div>
             <div class="comment text-center pt-3 pb-3">
