@@ -18,7 +18,7 @@
                     <div class="date">{{item.times}}</div>
                     <div class="point ml-2 mr-2"><span></span></div>
                     <div class="content text-left pb-3">
-                        <div class="event" :if="false">
+                        <div class="event" v-if="false">
                             公司成立
                         </div>
                         <div class="desc">

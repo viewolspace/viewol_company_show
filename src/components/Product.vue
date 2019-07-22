@@ -20,7 +20,7 @@
                         <div class="single m-2 d-flex align-items-center">
                             <img :src="item" alt="">
                         </div>
-                        <div :if="false">
+                        <div v-if="false">
                             name
                         </div>
                     </div>
