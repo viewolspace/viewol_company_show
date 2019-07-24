@@ -69,6 +69,7 @@ export default new Vuex.Store({
   },
   mutations: {
     SET_SHOW_INFO (state, {company, comment, praise, see, showInfo}) {
+      document.title = company.name
       state.company = company
       state.comment = comment
       state.praise = praise
