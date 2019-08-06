@@ -11,7 +11,6 @@
             <div class="mt-4 images">
                 <div v-for="item in show.imgUrl" :key="item"><img :src="item" alt=""></div>
             </div>
-            <div class="mt-5 solgan">· 创新 · 突破 · 发展 · 共赢 ·</div>
         </div>
 
         <div class="arrow-container">

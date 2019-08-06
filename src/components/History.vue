@@ -27,9 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-5 solgan">· 创新 · 突破 · 发展 · 共赢 ·</div>
         </div>
-
         <div class="arrow-container">
             <div class="arrow"></div>
         </div>

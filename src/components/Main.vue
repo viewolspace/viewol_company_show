@@ -22,8 +22,8 @@
             </div>
             <div class="text-center product pt-3 pb-3">
                 <div class="title">展品</div>
-                <div class="p-2 d-flex list">
-                    <div class="item text-center" v-for="item in product" :key="item.id">
+                <div class="p-2 d-flex justify-content-center list">
+                    <div class="item text-center" v-for="item in product" :key="item.id" @click="toProduct(item.id)">
                         <div class="image-container">
                             <img :src="item.imageView" :alt="item.name"/>
                         </div>
@@ -34,7 +34,7 @@
             <div class="see text-center pt-3 pb-3">
                 <div class="title">围观</div>
                 <div class="avatar-list pt-3">
-                    <div class="d-flex flex-wrap justify-content-center ">
+                    <div class="d-flex flex-wrap justify-content-center">
                         <img v-for="item in see" v-if="item.headImgUrl" :key="item.id" class="avatar" :src="item.headImgUrl" alt=""/>
                     </div>
                 </div>
@@ -65,7 +65,6 @@
                     </div>
                 </div>
             </div>
-            <div class="solgan mt-3">· 创新 · 突破 · 发展 · 共赢 ·</div>
         </div>
         <div class="mt-4">
             <form @submit.prevent="commentCompany">
@@ -118,6 +117,13 @@
       let data = _.clone(this.comment_content)
       this.comment_content = ''
       return data
+    }
+
+    toProduct (id) {
+      if (window.wx) {
+        wx.miniProgram.navigateTo({url: `/pages/products/detail?id=${id}`})
+      }
+      console.log(id)
     }
   }
 </script>
