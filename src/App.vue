@@ -15,14 +15,9 @@
     @Action('getProductList') getProductList
 
     async mounted () {
-      let uri = window.location.search.substring(1)
-      let params = new URLSearchParams(uri)
-      const company_id = params.get('company_id')
-      const user_id = params.get('user_id')
-      const expo_id = params.get('expo_id') || 1
-
+      const {company_id, user_id, expo_id = 2} = this.$route.query
       this.setBasicInfo({
-        user_id, company_id, expo_id
+        company_id, user_id, expo_id
       })
 
       await this.getProductList()

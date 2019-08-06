@@ -10,7 +10,7 @@ export default new Vuex.Store({
     base_url: 'https://www.view-ol.com/viewol_web',
     user_id: -1,
     company_id: -1,
-    expo_id: 1,
+    expo_id: 2,
     show: null,
     company: {},
     product: [],
