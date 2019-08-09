@@ -1,10 +1,7 @@
 <template>
-    <pull-to :top-load-method="refresh" v-if="show" :top-config="config">
+    <pull-to :top-load-method="back" :top-config="config" :is-top-bounce="!!show">
         <main-view :product="product" :company="company" :comment="comment" :praise="praise" :see="see" @comment="commentCompany" @praise="praiseCompany"></main-view>
     </pull-to>
-    <div v-else>
-        <main-view :product="product" :company="company" :comment="comment" :praise="praise" :see="see" @comment="commentCompany" @praise="praiseCompany"></main-view>
-    </div>
 </template>
 
 <script>
@@ -36,7 +33,7 @@
       loadingText: '', // 加载中的文字
     }
 
-    refresh () {
+    back () {
       this.$router.back()
     }
   }
