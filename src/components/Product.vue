@@ -57,12 +57,15 @@
                 font-weight: 500;
 
                 .single {
-                    width: 7.5rem;
-                    height: 7.5rem;
+                    height: 14vh;
                     background: white;
                     border-radius: 2px;
                     border: 1px solid rgba(175, 202, 230, 1);
                     box-shadow: 0 0 .5rem 0 rgba(137, 152, 168, 0.75);
+
+                    img{
+                        max-height: 100%;
+                    }
                 }
             }
         }

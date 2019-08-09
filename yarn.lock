@@ -7638,6 +7638,11 @@ vue-property-decorator@^8.2.1:
     vue "^2.6.10"
     vue-class-component "^7.0.1"
 
+vue-pull-to@^0.1.8:
+  version "0.1.8"
+  resolved "https://registry.npm.taobao.org/vue-pull-to/download/vue-pull-to-0.1.8.tgz#00914cf32951230564a05549577f2cd18cd0e56e"
+  integrity sha1-AJFM8ylRIwVkoFVJV38s0YzQ5W4=
+
 vue-router@^3.0.7:
   version "3.0.7"
   resolved "https://registry.npm.taobao.org/vue-router/download/vue-router-3.0.7.tgz#b36ca107b4acb8ff5bc4ff824584059c23fcb87b"
