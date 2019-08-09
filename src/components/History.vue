@@ -14,7 +14,7 @@
                 <span class="arrow flip"></span>
             </div>
             <div class="progresses mt-4">
-                <div class="d-flex item" v-for="item in progresses" :key="item.times">
+                <div class="d-flex item" v-for="(item, index) in progresses" :key="index">
                     <div class="date">{{item.times}}</div>
                     <div class="point ml-2 mr-2"><span></span></div>
                     <div class="content text-left pb-3">
