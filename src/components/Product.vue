@@ -20,9 +20,6 @@
                         <div class="single m-2 d-flex align-items-center">
                             <img :src="item" alt="">
                         </div>
-                        <div v-if="false">
-                            name
-                        </div>
                     </div>
                 </div>
             </div>
@@ -46,7 +43,7 @@
   })
   export default class Product extends Vue {
     get products () {
-      return _.chunk(this.show.productUrl, 2)
+      return _.chunk(this.show.productUrl, 1)
     }
   }
 </script>
