@@ -3,7 +3,7 @@
         <swiper-slide class="swiper-item" v-if="show">
             <introduce-view :company="company" :show="show"></introduce-view>
         </swiper-slide>
-        <swiper-slide class="swiper-item" v-if="show">
+        <swiper-slide class="swiper-item" v-if="show && show.showFlag">
             <history-view :company="company" :show="show"></history-view>
         </swiper-slide>
         <swiper-slide class="swiper-item" v-if="show">
@@ -37,7 +37,9 @@
     }
 
     swiperChange () {
-      if (this.$refs.swiper.swiper.activeIndex === 3) this.$router.push({name: 'detail'})
+      let last = 3
+      if (!this.show.showFlag) last = 2
+      if (this.$refs.swiper.swiper.activeIndex === last) this.$router.push({name: 'detail'})
     }
   }
 </script>

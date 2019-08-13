@@ -74,7 +74,11 @@ export default new Vuex.Store({
       state.comment = comment
       state.praise = praise
       state.see = see
-      if (showInfo) state.show = JSON.parse(showInfo)
+      if (showInfo) {
+        let show = JSON.parse(showInfo)
+        show.showFlag = (show.showFlag === '1')
+        state.show = show
+      }
     },
 
     SET_PRODUCT (state, product) {
