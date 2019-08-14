@@ -36,7 +36,7 @@ export default new Vuex.Store({
         params: {
           expoId: state.expo_id,
           companyId: state.company_id,
-          num: 3
+          num: 21
         }
       })
       commit('SET_PRODUCT', result)
