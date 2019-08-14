@@ -1,11 +1,11 @@
 <template>
     <div class="section">
-        <div class="d-flex justify-content-center">
-            <div class="d-flex align-items-center logo">
-                <img :src="company.logoView" alt="Logo"/>
-            </div>
-        </div>
         <div class="container">
+            <div class="d-flex justify-content-center">
+                <div class="d-flex align-items-center logo">
+                    <img :src="company.logoView" alt="Logo"/>
+                </div>
+            </div>
             <div class="text-center company">
                 <div class="name">{{company.name}}</div>
                 <div class="line">
@@ -22,14 +22,14 @@
             </div>
             <div class="text-center product pt-3 pb-3">
                 <div class="title">展品</div>
-                <div class="p-2 d-flex justify-content-center list">
-                    <div class="item text-center" v-for="item in product" :key="item.id" @click="toProduct(item.id)">
+                <swiper class="list p-2" :options="swiperOption">
+                    <swiper-slide class="item" v-for="item in product" :key="item.id" @click.native="toProduct(item.id)">
                         <div class="image-container">
                             <img :src="item.imageView" :alt="item.name"/>
                         </div>
                         <div class="name">{{item.name}}</div>
-                    </div>
-                </div>
+                    </swiper-slide>
+                </swiper>
             </div>
             <div class="see text-center pt-3 pb-3">
                 <div class="title">围观</div>
@@ -105,6 +105,10 @@
   })
   export default class Main extends Vue {
     comment_content = ''
+    swiperOption = {
+      slidesPerView: 3,
+      spaceBetween: 0,
+    }
 
     @Emit('praise')
     praiseCompany () {
@@ -120,10 +124,10 @@
     }
 
     toProduct (id) {
+      console.log(id)
       if (window.wx) {
         wx.miniProgram.navigateTo({url: `/pages/products/detail?id=${id}`})
       }
-      console.log(id)
     }
   }
 </script>
@@ -177,8 +181,6 @@
 
             .list {
                 .item {
-                    margin: 0 5px;
-
                     .image-container {
                         display: inline-block;
                         height: 90px;

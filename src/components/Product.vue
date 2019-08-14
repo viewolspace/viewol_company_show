@@ -1,11 +1,11 @@
 <template>
     <div class="section">
-        <div class="d-flex justify-content-center">
-            <div class="d-flex align-items-center logo">
-                <img :src="company.logoView" alt="Logo">
-            </div>
-        </div>
         <div class="container text-center pl-3 pr-3">
+            <div class="d-flex justify-content-center">
+                <div class="d-flex align-items-center logo">
+                    <img :src="company.logoView" alt="Logo">
+                </div>
+            </div>
             <div class="mt-3 item-title">
                 <span class="arrow"></span>
                 <span class="arrow"></span>
@@ -63,7 +63,7 @@
                     border: 1px solid rgba(175, 202, 230, 1);
                     box-shadow: 0 0 .5rem 0 rgba(137, 152, 168, 0.75);
 
-                    img{
+                    img {
                         max-height: 100%;
                     }
                 }

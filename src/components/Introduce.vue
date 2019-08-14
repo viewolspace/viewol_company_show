@@ -1,11 +1,12 @@
 <template>
     <div class="section" id="introduce">
-        <div class="d-flex justify-content-center">
-            <div class="d-flex align-items-center logo">
-                <img :src="company.logoView" alt="Logo">
-            </div>
-        </div>
+
         <div class="container text-center company pl-3 pr-3">
+            <div class="d-flex justify-content-center">
+                <div class="d-flex align-items-center logo">
+                    <img :src="company.logoView" alt="Logo">
+                </div>
+            </div>
             <div class="name">{{company.name}}</div>
             <div class="mt-3 text-left content" v-html="company.content"></div>
             <div class="mt-4 images">

@@ -73,8 +73,9 @@ img {
     border-radius: 50%;
     overflow: hidden;
     z-index: 999;
+    margin-top: -1.875rem;
     background: rgba(255, 255, 255, 1);
-    box-shadow: 0px 3px 0px 0px rgba(166, 174, 187, 1);
+    box-shadow: 0 3px 0 0 rgba(166, 174, 187, 1);
 
     img {
       width: 100%;
@@ -86,8 +87,8 @@ img {
     position: relative;
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 1.03));
     // border: 1px solid rgba(255, 255, 255, 1);
-    margin: -1.875rem 0 0;
-    padding: 2.5rem 0;
+    margin-top: 1.875rem;
+    padding: 0 0 2.5rem 0;
 
     &::before {
       content: "";
