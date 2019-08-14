@@ -22,13 +22,14 @@
             </div>
             <div class="text-center product pt-3 pb-3">
                 <div class="title">展品</div>
-                <swiper class="list p-2" :options="swiperOption">
+                <swiper class="list p-2 pb-3" :options="swiperOption">
                     <swiper-slide class="item" v-for="item in product" :key="item.id" @click.native="toProduct(item.id)">
                         <div class="image-container">
                             <img :src="item.imageView" :alt="item.name"/>
                         </div>
                         <div class="name">{{item.name}}</div>
                     </swiper-slide>
+                    <div class="swiper-pagination" slot="pagination"></div>
                 </swiper>
             </div>
             <div class="see text-center pt-3 pb-3">
@@ -108,6 +109,10 @@
     swiperOption = {
       slidesPerView: 3,
       spaceBetween: 0,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      }
     }
 
     @Emit('praise')
@@ -289,5 +294,9 @@
                 font-size: 1rem;
             }
         }
+    }
+
+    .swiper-pagination {
+        margin-bottom: -1rem;
     }
 </style>
