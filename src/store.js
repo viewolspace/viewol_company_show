@@ -16,7 +16,8 @@ export default new Vuex.Store({
     product: [],
     comment: [],
     praise: [],
-    see: []
+    see: [],
+    activity_detail: ''
   },
   actions: {
     async getCompanyInformation ({commit, state}) {
@@ -65,6 +66,17 @@ export default new Vuex.Store({
         }
       })
       if (status === '0000') dispatch('getCompanyInformation')
+    },
+
+    async getActivityDetail ({commit, state}, id) {
+      const {result} = await axios.get(`${state.base_url}/schedule/getSchedule`, {
+        params: {
+          userId: state.user_id,
+          id
+        }
+      })
+      document.title = result.title
+      commit('SET_ACTIVITY_DETAIL', result)
     }
   },
   mutations: {
@@ -88,6 +100,9 @@ export default new Vuex.Store({
     SET_BASIC_INFO (state, {user_id, company_id}) {
       state.user_id = user_id
       state.company_id = company_id
+    },
+    SET_ACTIVITY_DETAIL (state, {contentView}) {
+      state.activity_detail = contentView
     }
   }
 })
