@@ -1,5 +1,5 @@
 <template>
-    <div v-html="activity_detail"></div>
+    <div class="activity-content" v-html="activity_detail"></div>
 </template>
 
 <script>
@@ -12,6 +12,8 @@
   }
 </script>
 
-<style scoped>
-
+<style>
+    .activity-content img {
+        display: block;
+    }
 </style>

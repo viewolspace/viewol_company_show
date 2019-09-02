@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import { Vue, Component } from 'vue-property-decorator'
+  import { Vue, Watch, Component } from 'vue-property-decorator'
   import { State } from 'vuex-class'
   import wxApi from '../helpers/share'
 
@@ -37,8 +37,30 @@
   export default class Invitation extends Vue {
     @State('invitation_detail') detail
 
-    mounted () {
-      wxApi.wxRegister()
+    @Watch('detail', {deep: true})
+    handlerDetailChange () {
+      this.setShareMessage()
+    }
+
+    async mounted () {
+      await wxApi.register(() => {
+        this.setShareMessage()
+      })
+    }
+
+    setShareMessage () {
+      const {detail} = this
+      wxApi.shareTimeline({
+        title: detail.name, // 分享标题
+        link: window.location.href, // 分享链接
+        imgUrl: detail.logo, // 分享图标
+      })
+      wxApi.shareAppMessage({
+        title: detail.name, // 分享标题
+        desc: detail.content, // 分享描述
+        link: window.location.href, // 分享链接
+        imgUrl: detail.logo, // 分享图标
+      })
     }
   }
 </script>
@@ -49,12 +71,11 @@
         text-align: center;
         /*background: red;*/
         background: url("../images/invitation/background.png") no-repeat;
-        background-size: 100% auto;
+        background-size: cover;
         padding: 1rem 1.8rem;
-        height: 100vh;
 
         .inner {
-            background: url("../images/invitation/background-inner.jpg") no-repeat;
+            background: url("../images/invitation/background-inner.png") no-repeat;
             background-size: 100% auto;
             padding: 3.1rem 0;
 
