@@ -13,21 +13,35 @@
     @Mutation('SET_BASIC_INFO') setBasicInfo
     @Action('getCompanyInformation') getCompanyInformation
     @Action('getActivityDetail') getActivityDetail
+    @Action('getCompanyAndQr') getCompanyAndQr
     @Action('getProductList') getProductList
 
     async mounted () {
-      const {company_id, user_id, expo_id = 2, activity_id} = this.$route.query
-      if (!activity_id) {
-        this.setBasicInfo({
-          company_id, user_id, expo_id
-        })
-
-        await this.getProductList()
-        const {showInfo} = await this.getCompanyInformation()
-        if (!showInfo) this.$router.replace({name: 'detail'})
-      } else {
-        await this.getActivityDetail(activity_id)
+      const {name} = this.$route
+      switch (name) {
+        case 'invitation':
+          const {company_id} = this.$route.query
+          this.getCompanyAndQr(company_id)
+          break
+        case 'activity':
+          const {activity_id} = this.$route.query
+          await this.getActivityDetail(activity_id)
+          break
+        default:
+          await this.processMain()
+          break
       }
+    }
+
+    async processMain () {
+      const {company_id, user_id, expo_id = 2} = this.$route.query
+      this.setBasicInfo({
+        company_id, user_id, expo_id
+      })
+
+      await this.getProductList()
+      const {showInfo} = await this.getCompanyInformation()
+      if (!showInfo) this.$router.replace({name: 'detail'})
     }
 
   }

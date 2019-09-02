@@ -17,7 +17,8 @@ export default new Vuex.Store({
     comment: [],
     praise: [],
     see: [],
-    activity_detail: ''
+    activity_detail: '',
+    invitation_detail: {}
   },
   actions: {
     async getCompanyInformation ({commit, state}) {
@@ -77,8 +78,23 @@ export default new Vuex.Store({
       })
       document.title = result.title
       commit('SET_ACTIVITY_DETAIL', result)
+    },
+
+    async getCompanyAndQr ({commit, state}, id) {
+      const {qr, result} = await axios.get(`${state.base_url}/company/getCompanyAndQr`, {
+        params: {
+          maNum: 3,
+          id,
+          width: 100
+        }
+      })
+      console.log(result)
+      result.qr = `data:image/png;base64,${qr}`
+      document.title = result.name
+      commit('SET_INVITATION_DETAIL', result)
     }
-  },
+  }
+  ,
   mutations: {
     SET_SHOW_INFO (state, {company, comment, praise, see, showInfo}) {
       document.title = company.name
@@ -103,6 +119,9 @@ export default new Vuex.Store({
     },
     SET_ACTIVITY_DETAIL (state, {contentView}) {
       state.activity_detail = contentView
+    },
+    SET_INVITATION_DETAIL (state, detail) {
+      state.invitation_detail = detail
     }
   }
 })
