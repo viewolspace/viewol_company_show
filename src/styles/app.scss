@@ -181,3 +181,9 @@ img {
     transform: translateY(-10px);
   }
 }
+
+@media screen and (max-device-width: 376px) {
+  html {
+    font-size: 14px;
+  }
+}
