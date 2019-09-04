@@ -11,7 +11,7 @@
                     </div>
                     <div>
                         <div class="logo">
-                            <img :src="detail.logo" alt="">
+                            <img :src="detail.logoView" alt="">
                         </div>
                     </div>
                     <div class="name">
@@ -73,13 +73,13 @@
       wxApi.shareTimeline({
         title: detail.name + '邀请您莅临参观2019年中国国际消防设备技术交流展', // 分享标题
         link: window.location.href, // 分享链接
-        imgUrl: detail.logo, // 分享图标
+        imgUrl: detail.logoView, // 分享图标
       })
       wxApi.shareAppMessage({
         title: detail.name + '邀请您莅临参观2019年中国国际消防设备技术交流展', // 分享标题
         desc: detail.content, // 分享描述
         link: window.location.href, // 分享链接
-        imgUrl: detail.logo, // 分享图标
+        imgUrl: detail.logoView, // 分享图标
       })
     }
   }
