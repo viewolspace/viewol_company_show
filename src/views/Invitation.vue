@@ -161,6 +161,15 @@
                 padding: .5rem;
                 border-radius: 3.75rem;
                 overflow: hidden;
+                position: relative;
+
+                img {
+                    position: absolute;
+                    top: 50%;
+                    left: 10%;
+                    transform: translateY(-50%);
+                    max-width: 80%;
+                }
             }
 
             .name {
