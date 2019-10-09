@@ -4,6 +4,9 @@ import Show from './views/Show.vue'
 import Detail from './views/Detail.vue'
 import Activity from './views/Activity.vue'
 import Invitation from './views/Invitation.vue'
+import Message from './views/Message.vue'
+import SignUp from './views/SignUp.vue'
+import CheckIn from './views/CheckIn.vue'
 
 Vue.use(Router)
 
@@ -28,6 +31,22 @@ export default new Router({
       path: '/invitation',
       name: 'invitation',
       component: Invitation
+    },
+    {
+      path: '/check-in',
+      name: 'check-in',
+      component: CheckIn
+    },
+    {
+      path: '/sign-up',
+      name: 'sign-up',
+      component: SignUp
+    },
+    {
+      path: '/message',
+      name: 'message',
+      component: Message,
+      props: (route) => ({type: route.query.type})
     }
   ]
 })

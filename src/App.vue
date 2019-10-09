@@ -27,6 +27,10 @@
           const {activity_id} = this.$route.query
           await this.getActivityDetail(activity_id)
           break
+        case 'sign-up':
+        case 'check-in':
+        case 'message':
+          break
         default:
           await this.processMain()
           break
