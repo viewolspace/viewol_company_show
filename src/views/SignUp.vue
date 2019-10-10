@@ -70,7 +70,7 @@
 
     async signUpAction () {
       if (!this.validateForm()) return
-      await this.postSignUp(this.form)
+      await this.postSignUp(Object.assign({bbsId: this.bbsId}, this.form))
       this.$router.push({
         name: 'message',
         query: {type: 'success_sign_up'}
