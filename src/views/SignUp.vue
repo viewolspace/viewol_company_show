@@ -70,11 +70,15 @@
 
     async signUpAction () {
       if (!this.validateForm()) return
-      await this.postSignUp(Object.assign({bbsId: this.bbsId}, this.form))
-      this.$router.push({
-        name: 'message',
-        query: {type: 'success_sign_up'}
-      })
+      try {
+        await this.postSignUp(Object.assign({bbsId: this.bbsId}, this.form))
+        this.$router.push({
+          name: 'message',
+          query: {type: 'success_sign_up'}
+        })
+      } catch (e) {
+        alert(e)
+      }
     }
 
     validateForm () {
