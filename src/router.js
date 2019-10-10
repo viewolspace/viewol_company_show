@@ -35,12 +35,14 @@ export default new Router({
     {
       path: '/check-in',
       name: 'check-in',
-      component: CheckIn
+      component: CheckIn,
+      props: (route) => ({bbsId: route.query.bbsId})
     },
     {
       path: '/sign-up',
       name: 'sign-up',
-      component: SignUp
+      component: SignUp,
+      props: (route) => ({bbsId: route.query.bbsId})
     },
     {
       path: '/message',

@@ -92,6 +92,37 @@ export default new Vuex.Store({
       result.qr = `data:image/png;base64,${qr}`
       document.title = result.name
       commit('SET_INVITATION_DETAIL', result)
+    },
+
+    async signUp ({state}, params) {
+      const result = await axios.post(`${state.base_url}/buser/userJoinBbs`, qs.stringify({
+        name: params.name,
+        sex: params.sex,
+        company: params.company,
+        position: params.position,
+        phone: params.phone,
+        email: params.email,
+        idea: params.idea,
+        bbsId: params.bbsId,
+        address: params.address,
+      }), {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
+
+      console.log()
+    },
+
+    async checkIn ({state}, params) {
+      return await axios.post(`${state.base_url}/buser/userSignBbs`, qs.stringify({
+        phone: params.phone,
+        bbsId: params.bbsId,
+      }), {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
     }
   }
   ,
