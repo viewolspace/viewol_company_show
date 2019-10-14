@@ -50,7 +50,7 @@
 
     handlerAction () {
       this.$router.replace({
-        name: 'sign-in'
+        name: 'sign-up'
       })
     }
   }
