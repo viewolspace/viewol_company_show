@@ -20,6 +20,7 @@
   @Component
   export default class Message extends Vue {
     @Prop({required: true}) type
+    @Prop({required: true}) bbsId
 
     icon = null
     sub_message = null
@@ -50,7 +51,10 @@
 
     handlerAction () {
       this.$router.replace({
-        name: 'sign-up'
+        name: 'sign-up',
+        query: {
+          bbsId: this.bbsId
+        }
       })
     }
   }

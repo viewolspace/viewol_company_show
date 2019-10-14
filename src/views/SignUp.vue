@@ -74,7 +74,7 @@
         await this.postSignUp(Object.assign({bbsId: this.bbsId}, this.form))
         this.$router.push({
           name: 'message',
-          query: {type: 'success_sign_up'}
+          query: {type: 'success_sign_up', bbsId: this.bbsId}
         })
       } catch (e) {
         alert(e)

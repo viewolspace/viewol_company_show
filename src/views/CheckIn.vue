@@ -59,7 +59,8 @@
       this.$router.push({
         name: 'message',
         query: {
-          type
+          type,
+          bbsId: this.bbsId
         }
       })
     }

@@ -48,7 +48,7 @@ export default new Router({
       path: '/message',
       name: 'message',
       component: Message,
-      props: (route) => ({type: route.query.type})
+      props: (route) => ({type: route.query.type, bbsId: route.query.bbsId})
     }
   ]
 })
