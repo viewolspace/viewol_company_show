@@ -12,6 +12,10 @@ input, button, textarea {
   outline: none;
 }
 
+.flex-1 {
+  flex: 1;
+}
+
 .text-center {
   text-align: center !important;
 }
@@ -25,8 +29,8 @@ img {
 }
 
 .avatar {
-  width: 45px;
-  height: 45px;
+  width: 2.8rem;
+  height: 2.8rem;
   border-radius: 50%;
   background: white;
   box-sizing: border-box;
@@ -36,35 +40,35 @@ img {
 .section {
   position: relative;
   box-sizing: border-box;
-  background: url(../images/background.png);
-  background-size: auto 100%;
+  background: url(../images/background.png) repeat-y;
+  background-size: 100% auto;
   background-position-x: center;
   padding: 1.875rem;
   min-height: 100vh;
 
-  &::before {
-    position: absolute;
-    content: "";
-    display: block;
-    width: 9px;
-    top: 10%;
-    bottom: 10%;
-    left: 10px;
-    background: url("../images/arrow_up.png") repeat-y;
-    background-size: 100% auto;
-  }
+  //&::before {
+  //  position: absolute;
+  //  content: "";
+  //  display: block;
+  //  width: 9px;
+  //  top: 10%;
+  //  bottom: 10%;
+  //  left: 10px;
+  //  background: url("../images/arrow_up.png") repeat-y;
+  //  background-size: 100% auto;
+  //}
 
-  &::after {
-    position: absolute;
-    content: "";
-    display: block;
-    width: 9px;
-    top: 10%;
-    right: 10px;
-    bottom: 10%;
-    background: url("../images/arrow_down.png") repeat-y;
-    background-size: 100% auto;
-  }
+  //&::after {
+  //  position: absolute;
+  //  content: "";
+  //  display: block;
+  //  width: 9px;
+  //  top: 10%;
+  //  right: 10px;
+  //  bottom: 10%;
+  //  background: url("../images/arrow_down.png") repeat-y;
+  //  background-size: 100% auto;
+  //}
 
   .logo {
     width: 3.75rem;
@@ -84,22 +88,22 @@ img {
   }
 
   .container {
-    position: relative;
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 1.03));
+    //position: relative;
+    //background: linear-gradient(0deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 1.03));
     // border: 1px solid rgba(255, 255, 255, 1);
     margin-top: 1.875rem;
     padding: 0 0 2.5rem 0;
 
-    &::before {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border-top: 2px solid white;
-      border-left: 2px solid white;
-      top: -8px;
-      left: -8px;
-    }
+    //&::before {
+    //  content: "";
+    //  position: absolute;
+    //  width: 20px;
+    //  height: 20px;
+    //  border-top: 2px solid white;
+    //  border-left: 2px solid white;
+    //  top: -8px;
+    //  left: -8px;
+    //}
 
     &::after {
       content: "";
@@ -114,11 +118,12 @@ img {
   }
 
   .title {
-    color: #2661A7;
-    font-size: .9375rem;
-    background: url(../images/line_split.png) no-repeat;
-    background-size: 100% auto;
-    background-position-y: center;
+    color: #FFE200;
+    font-size: 0.75rem;
+    background: #0251B6;
+    width: 7.72rem;
+    border-radius: 1rem;
+    text-align: center;
   }
 
   .item-title {
