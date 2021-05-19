@@ -49,7 +49,7 @@
           <img src="../images/praise.png" alt/>
         </div>
         <div class="mt-2 desc">喜欢就点个赞吧</div>
-        <div class="mt-1 count">({{ praise.length }}赞)</div>
+        <div class="count">({{ praise.length }}赞)</div>
         <div class="mt-2 pl-3 pr-3 text-left people">
           <span v-for="item in praise">{{ item.userName }}, </span>
         </div>
@@ -60,25 +60,27 @@
           <div class="d-flex mt-3 item" v-for="item in comment">
             <div class="avatar-container">
               <img class="avatar"
-                   src="https://wx.qlogo.cn/mmopen/vi_32/PyGEJ181Q2jpGiaW4LHcf9t39ktKYZglibD36VybMcjKL0rqiavgZXarwqZ1ly98B7ib4jhslHn4O4EkibILeHY3JwQ/132"
+                   :src="item.headImgUrl"
                    alt=""/>
             </div>
-            <div class="ml-3 mr-2 pb-3 flex-fill text-left detail">
-              <div class="nickname">{{ item.userName }}</div>
-              <div class="date mt-1">{{ item.cTime | date }}</div>
+            <div class="ml-1 mr-1 pb-3 flex-1 text-left detail">
+              <!--              <div class="nickname">{{ item.userName }}</div>-->
+              <!--              <div class="date mt-1">{{ item.cTime | date }}</div>-->
               <div class="mt-2 comment-content">{{ item.comment }}</div>
+            </div>
+            <div class="avatar-container">
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="mt-4">
-      <form @submit.prevent="commentCompany">
-        <div class="add-on">
-          <input class="field" placeholder="我也要评论" v-model="comment_content">
-          <button type="submit" class="item">发送</button>
-        </div>
-      </form>
+      <div class="mt-4">
+        <form @submit.prevent="commentCompany">
+          <div class="add-on">
+            <input class="field" placeholder="我也要评论" v-model="comment_content">
+            <button type="submit" class="item">发送</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -178,14 +180,12 @@ export default class Main extends Vue {
 
     .welcome {
       font-size: 0.9rem;
-      font-weight: 400;
       color: #FFFFFF;
     }
 
     .location {
       margin-top: .2rem;
       font-size: 12px;
-      font-weight: 400;
       color: #FCFDFD;
     }
 
@@ -208,7 +208,6 @@ export default class Main extends Vue {
         border: 1px solid #0251B6;
         border-radius: 1rem;
         font-size: 12px;
-        font-weight: 400;
         color: #0251B6;
         text-align: center;
         transform: translateY(-50%);
@@ -244,7 +243,6 @@ export default class Main extends Vue {
 
         .name {
           font-size: 12px;
-          font-weight: 400;
           color: #024397;
           text-align: center;
         }
@@ -279,39 +277,48 @@ export default class Main extends Vue {
 
     .desc {
       font-size: .8125rem;
-      color: #2B3C4C;
+      color: #024397;
     }
 
     .count,
     .people {
       font-size: .8125rem;
-      color: #879CB3;
+      color: #024397;
     }
   }
 
   .comment {
-    background: rgba(255, 255, 255, .1);
+    margin-top: .4rem;
+    background: #A0C9FD;
 
-    .avatar-container {
-      width: 60px;
-    }
+    .item {
 
-    .detail {
-      border-bottom: 1px solid #93B0D0;
-
-      .nickname {
-        font-size: .8125rem;
-        color: #2B3C4C;
+      &:nth-child(even) {
+        flex-direction: row-reverse;
       }
 
-      .date {
-        font-size: 12px;
-        color: #ABACAC;
+      .avatar-container {
+        width: 60px;
       }
 
-      .comment-content {
-        font-size: .9375rem;
-        color: #2B3C4C;
+      .detail {
+        border-bottom: 1px solid #0251B6;
+
+        .nickname {
+          font-size: .8125rem;
+          color: #2B3C4C;
+        }
+
+        .date {
+          font-size: 12px;
+          color: #ABACAC;
+        }
+
+        .comment-content {
+          font-size: .9375rem;
+          color: #024397;
+          word-break: break-all;
+        }
       }
     }
   }
@@ -320,15 +327,22 @@ export default class Main extends Vue {
   .add-on {
     display: flex;
     border-radius: 30px;
-    background: white;
+    background: #A0C9FD;
     overflow: hidden;
     font-size: 1rem;
 
     .field {
+      background: transparent;
       flex: 1;
+      color: #024397;
       font-size: 1rem;
       padding: 10px 20px;
       border: none;
+
+      &::placeholder {
+        color: #024397;
+        opacity: 0.5;
+      }
     }
 
     .item {
@@ -337,6 +351,7 @@ export default class Main extends Vue {
       box-sizing: border-box;
       padding: 0 20px 0 0;
       border: none;
+      color: #024397;
       background: transparent;
       font-size: 1rem;
     }
