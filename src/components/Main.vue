@@ -2,7 +2,7 @@
   <div class="section">
     <div class="container">
       <div class="d-flex justify-content-center">
-        <div class="d-flex flex-column align-items-center company-container">
+        <div class="d-flex flex-column align-items-center section-header">
           <img class="logo-image" :src="company.logoView" alt="Logo"/>
           <div class="name">{{ company.name }}</div>
         </div>
@@ -147,27 +147,6 @@ export default class Main extends Vue {
 <style lang="scss" scoped>
 .section {
   overflow-y: scroll;
-
-  .company-container {
-    width: 100%;
-    border: 1.5px solid #A0C9FD;
-    border-radius: 0.625rem 0.625rem 0 0;
-
-    .logo-image {
-      width: 3.33rem;
-      background: white;
-      border-radius: 3.33rem;
-      height: 3.33rem;
-      margin-top: -1.76rem;
-    }
-
-    .name {
-      padding: 0.9rem;
-      font-size: 1rem;
-      font-weight: bold;
-      color: #FFFFFF;
-    }
-  }
 
   .place-container {
     margin-top: 0.4rem;
