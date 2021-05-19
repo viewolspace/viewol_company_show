@@ -2,7 +2,7 @@
   <div class="section">
     <introduce-view :company="company" :show="show"></introduce-view>
     <history-view :company="company" :show="show"></history-view>
-    <product-view :company="company" :show="show"></product-view>
+<!--    <product-view :company="company" :show="show"></product-view>-->
   </div>
   <!--    <swiper :options="swiperOption" ref="swiper" class="swiper-box" @slideChange="swiperChange">-->
   <!--        <swiper-slide class="swiper-item" v-if="show">-->

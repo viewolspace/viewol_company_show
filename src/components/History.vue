@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="progresses&&progresses.length">
     <div class="container text-center pl-3 pr-3">
       <div class="d-flex flex-column align-items-center section-header full">
         <div class="d-flex align-items-center">
@@ -36,21 +36,7 @@ import { Component, Vue } from 'vue-property-decorator'
 export default class History extends Vue {
 
   get progresses () {
-    // return this.show.progresses.reverse()
-    return [
-      {
-        times: '2021',
-        des: '河南双富机电制造有限公司主要生产抗震支架、消防高温排烟风机、混流风机、斜流风机'
-      },
-      {
-        times: '2021',
-        des: '河南双富机电制造有限公司主要生产抗震支架、消防高温排烟风机、混流风机、斜流风机'
-      },
-      {
-        times: '2021',
-        des: '河南双富机电制造有限公司主要生产抗震支架、消防高温排烟风机、混流风机、斜流风机'
-      }
-    ]
+    return this.show.progresses.reverse()
   }
 
 }
@@ -64,6 +50,7 @@ export default class History extends Vue {
 
   .item {
     margin: 0.5rem 0;
+
     &:last-child {
       .point::after {
         bottom: 0;

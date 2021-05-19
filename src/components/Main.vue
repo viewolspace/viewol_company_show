@@ -344,6 +344,7 @@ export default class Main extends Vue {
     width: 0.72rem;
     height: 0.38rem;
     background: #4797FD;
+    border-radius: 0;
 
     &-active {
       background: #0251B6;

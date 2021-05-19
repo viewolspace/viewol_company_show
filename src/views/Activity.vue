@@ -1,19 +1,19 @@
 <template>
-    <div class="activity-content" v-html="activity_detail"></div>
+  <div class="activity-content" v-html="activity_detail"></div>
 </template>
 
 <script>
-  import { Vue, Component } from 'vue-property-decorator'
-  import { State } from 'vuex-class'
+import { Vue, Component } from 'vue-property-decorator'
+import { State } from 'vuex-class'
 
-  @Component
-  export default class Activity extends Vue {
-    @State('activity_detail') activity_detail
-  }
+@Component
+export default class Activity extends Vue {
+  @State('activity_detail') activity_detail
+}
 </script>
 
 <style>
-    .activity-content img {
-        display: block;
-    }
+.activity-content img {
+  display: block;
+}
 </style>

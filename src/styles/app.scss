@@ -104,16 +104,16 @@ img {
     //  left: -8px;
     //}
 
-    &::after {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border-right: 2px solid #FE0000;
-      border-bottom: 2px solid #FE0000;
-      bottom: -8px;
-      right: -8px;
-    }
+    //&::after {
+    //  content: "";
+    //  position: absolute;
+    //  width: 20px;
+    //  height: 20px;
+    //  border-right: 2px solid #FE0000;
+    //  border-bottom: 2px solid #FE0000;
+    //  bottom: -8px;
+    //  right: -8px;
+    //}
   }
 
   .title {
