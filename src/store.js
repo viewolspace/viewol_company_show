@@ -22,7 +22,13 @@ export default new Vuex.Store({
   },
   actions: {
     async getCompanyInformation ({commit, state}) {
-      const {result: company, comment, praise, see, showInfo} = await axios.get(`${state.base_url}/company/getCompany`, {
+      const {
+        result: company,
+        comment,
+        praise,
+        see,
+        showInfo
+      } = await axios.get(`${state.base_url}/company/getCompany`, {
         params: {
           id: state.company_id,
           userId: state.user_id
@@ -148,8 +154,8 @@ export default new Vuex.Store({
       state.user_id = user_id
       state.company_id = company_id
     },
-    SET_ACTIVITY_DETAIL (state, {contentView}) {
-      state.activity_detail = contentView
+    SET_ACTIVITY_DETAIL (state, {contentView, companyName}) {
+      state.activity_detail = contentView ? {...JSON.parse(contentView), companyName} : null
     },
     SET_INVITATION_DETAIL (state, detail) {
       state.invitation_detail = detail
