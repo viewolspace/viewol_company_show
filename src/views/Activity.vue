@@ -118,16 +118,12 @@ html {
 }
 </style>
 <style scoped lang="scss">
-@font-face {
-  font-family: 'Source Han Sans CN';
-  src: url(https://mirrors.tuna.tsinghua.edu.cn/adobe-fonts/source-han-sans/SubsetOTF/CN/SourceHanSansCN-Regular.otf) format('opentype');
-}
 
 .activity-page-container {
   display: flex;
   flex-direction: column;
   background: #98c3fb;
-  font-family: 'Source Han Sans CN', serif;
+  padding-bottom: 3rem;
 
   img.nav {
     width: 100%;
