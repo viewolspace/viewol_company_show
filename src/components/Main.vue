@@ -13,7 +13,7 @@
           欢迎您莅临参观
         </div>
         <div class="location">
-          2021年10月16-19日&nbsp;&nbsp;&nbsp;&nbsp;中国国际展览中心（新馆）
+          2021年10月12-15日&nbsp;&nbsp;&nbsp;&nbsp;中国国际展览中心（新馆）
         </div>
         <div class="mt-3 mb-4 place d-flex flex-column align-items-center">
           <div class="top">{{ company.place }}</div>
@@ -57,11 +57,13 @@
       <div class="comment d-flex flex-column align-items-center pt-3 pb-3">
         <div class="title">评论</div>
         <div class="p-2 pt-0">
-          <div class="d-flex mt-3 item" v-for="item in comment">
+          <div class="d-flex mt-3 item" :class="{'reply':item.reply}" v-for="item in comment" :key="item.id">
             <div class="avatar-container">
               <img class="avatar"
+                   v-if="!item.reply"
                    :src="item.headImgUrl"
                    alt=""/>
+              <img v-else class="avatar" :src="company.logoView" alt="">
             </div>
             <div class="ml-1 mr-1 pb-3 flex-1 text-left detail">
               <!--              <div class="nickname">{{ item.userName }}</div>-->
@@ -91,11 +93,11 @@ import _ from 'lodash'
 
 @Component({
   props: {
-    product: {required: true},
-    company: {required: true},
-    comment: {required: true, default: []},
-    praise: {required: true, default: []},
-    see: {required: true, default: []}
+    product: { required: true },
+    company: { required: true },
+    comment: { required: true, default: [] },
+    praise: { required: true, default: [] },
+    see: { required: true, default: [] }
   },
   filters: {
     date: (date) => {
@@ -138,7 +140,7 @@ export default class Main extends Vue {
   toProduct (id) {
     console.log(id)
     if (window.wx) {
-      wx.miniProgram.navigateTo({url: `/pages/products/detail?id=${id}`})
+      wx.miniProgram.navigateTo({ url: `/pages/products/detail?id=${id}` })
     }
   }
 }
@@ -279,7 +281,7 @@ export default class Main extends Vue {
 
     .item {
 
-      &:nth-child(even) {
+      &.reply {
         flex-direction: row-reverse;
       }
 

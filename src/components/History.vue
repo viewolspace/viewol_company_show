@@ -12,7 +12,7 @@
         <div class="d-flex item" v-for="(item, index) in progresses" :key="index">
           <div class="date">{{ item.times }}</div>
           <div class="point ml-2 mr-2"><span></span></div>
-          <div class="content text-left pb-3">
+          <div class="content text-left pb-3 flex-1">
             <div class="desc">
               {{ item.des }}
             </div>
@@ -29,14 +29,14 @@ import { Component, Vue } from 'vue-property-decorator'
 
 @Component({
   props: {
-    company: {required: true},
-    show: {required: true, default: []}
+    company: { required: true },
+    show: { required: true, default: { progresses: [] } }
   }
 })
 export default class History extends Vue {
 
   get progresses () {
-    return this.company.progresses ? this.company.progresses.reverse() : []
+    return this.show && this.show.progresses ? this.show.progresses.reverse() : []
   }
 
 }
@@ -65,7 +65,7 @@ export default class History extends Vue {
 
     .point {
       position: relative;
-      width: 2rem;
+      width: 1.5rem;
 
       span {
         display: inline-block;
@@ -83,7 +83,7 @@ export default class History extends Vue {
       &::after {
         content: "";
         position: absolute;
-        left: calc(50% - 1px);
+        left: 0.5rem;
         top: 1rem;
         bottom: -1rem;
         border-left: 2px solid #0251B6;
