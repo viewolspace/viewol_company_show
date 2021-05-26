@@ -33,7 +33,7 @@
               @leave="leave"
           >
             <div v-if="show[$index]">
-              <div class="more-detail" v-if="item.zcr">
+              <div class="more-detail" v-if="item.zcrjs">
                 <div class="more-detail-title">
                   主持人 {{ item.zcr }}
                 </div>
@@ -49,7 +49,7 @@
               </div>
             </div>
           </transition>
-          <a class="more-icon" @click="toggleShow($index)">
+          <a class="more-icon" @click="toggleShow($index)" v-if="item.zjgy || item.zcrjs">
             <img class="more" src="@/images/more.png" alt=""/>
           </a>
         </div>
@@ -123,7 +123,7 @@ html {
   display: flex;
   flex-direction: column;
   background: #98c3fb;
-  padding-bottom: 3rem;
+  padding-bottom: 4rem;
 
   img.nav {
     width: 100%;
