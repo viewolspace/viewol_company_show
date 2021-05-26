@@ -1,21 +1,18 @@
 <template>
-  <div class="section">
+  <div class="section" v-if="false">
     <introduce-view :company="company" :show="show"></introduce-view>
     <history-view :company="company" :show="show"></history-view>
-<!--    <product-view :company="company" :show="show"></product-view>-->
   </div>
-  <!--    <swiper :options="swiperOption" ref="swiper" class="swiper-box" @slideChange="swiperChange">-->
-  <!--        <swiper-slide class="swiper-item" v-if="show">-->
-  <!--            <introduce-view :company="company" :show="show"></introduce-view>-->
-  <!--        </swiper-slide>-->
-  <!--        <swiper-slide class="swiper-item" v-if="show && show.showFlag">-->
-  <!--            <history-view :company="company" :show="show"></history-view>-->
-  <!--        </swiper-slide>-->
-  <!--        <swiper-slide class="swiper-item" v-if="show">-->
-  <!--            <product-view :company="company" :show="show"></product-view>-->
-  <!--        </swiper-slide>-->
-  <!--        <swiper-slide class="swiper-item"></swiper-slide>-->
-  <!--    </swiper>-->
+  <swiper v-else :options="swiperOption" ref="swiper" style="" class="swiper-box section" @slideChange="swiperChange">
+    <swiper-slide class="swiper-item" v-if="show">
+      <introduce-view :company="company" :show="show"></introduce-view>
+    </swiper-slide>
+    <swiper-slide class="swiper-item" v-if="show && show.showFlag">
+      <history-view :company="company" :show="show"></history-view>
+    </swiper-slide>
+
+    <swiper-slide class="swiper-item"></swiper-slide>
+  </swiper>
 </template>
 
 <script>
@@ -42,8 +39,8 @@ export default class Show extends Vue {
   }
 
   swiperChange () {
-    let last = 3
-    if (!this.show.showFlag) last = 2
+    let last = 2
+    if (!this.show.showFlag) last = 1
     if (this.$refs.swiper.swiper.activeIndex === last) this.$router.push({name: 'detail'})
   }
 }

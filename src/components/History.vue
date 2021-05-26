@@ -36,7 +36,7 @@ import { Component, Vue } from 'vue-property-decorator'
 export default class History extends Vue {
 
   get progresses () {
-    return this.show.progresses.reverse()
+    return this.company.progresses ? this.company.progresses.reverse() : []
   }
 
 }

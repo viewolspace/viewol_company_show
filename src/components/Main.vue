@@ -1,5 +1,5 @@
 <template>
-  <div class="section">
+  <div class="section main-page-container">
     <div class="container">
       <div class="d-flex justify-content-center">
         <div class="d-flex flex-column align-items-center section-header">
@@ -54,7 +54,7 @@
           <span v-for="item in praise">{{ item.userName }}, </span>
         </div>
       </div>
-      <div class="comment text-center pt-3 pb-3">
+      <div class="comment d-flex flex-column align-items-center pt-3 pb-3">
         <div class="title">评论</div>
         <div class="p-2 pt-0">
           <div class="d-flex mt-3 item" v-for="item in comment">
@@ -145,8 +145,15 @@ export default class Main extends Vue {
 </script>
 
 <style lang="scss" scoped>
+
+
 .section {
-  overflow-y: scroll;
+  overflow-y: auto;
+
+  &.main-page-container {
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+  }
 
   .place-container {
     margin-top: 0.4rem;
