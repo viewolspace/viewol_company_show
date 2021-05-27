@@ -57,22 +57,32 @@
       <div class="comment d-flex flex-column align-items-center pt-3 pb-3">
         <div class="title">评论</div>
         <div class="p-2 pt-0">
-          <div class="d-flex mt-3 item" :class="{'reply':item.reply}" v-for="item in comment" :key="item.id">
-            <div class="avatar-container">
-              <img class="avatar"
-                   v-if="!item.reply"
-                   :src="item.headImgUrl"
-                   alt=""/>
-              <img v-else class="avatar" :src="company.logoView" alt="">
+          <template v-for="item in comment" >
+            <div class="d-flex mt-3 item"  >
+              <div class="avatar-container">
+                <img class="avatar"
+                     :src="item.headImgUrl"
+                     alt=""/>
+              </div>
+              <div class="ml-1 mr-1 pb-3 flex-1 text-left detail">
+                <!--              <div class="nickname">{{ item.userName }}</div>-->
+                <!--              <div class="date mt-1">{{ item.cTime | date }}</div>-->
+                <div class="mt-2 comment-content">{{ item.comment }}</div>
+              </div>
+              <div class="avatar-container">
+              </div>
             </div>
-            <div class="ml-1 mr-1 pb-3 flex-1 text-left detail">
-              <!--              <div class="nickname">{{ item.userName }}</div>-->
-              <!--              <div class="date mt-1">{{ item.cTime | date }}</div>-->
-              <div class="mt-2 comment-content">{{ item.comment }}</div>
+            <div class="d-flex mt-3 item reply" v-if="item.reply" >
+              <div class="avatar-container">
+                <img class="avatar" :src="company.logoView" alt="">
+              </div>
+              <div class="ml-1 mr-1 pb-3 flex-1 text-left detail">
+                <div class="mt-2 comment-content">{{ item.reply }}</div>
+              </div>
+              <div class="avatar-container">
+              </div>
             </div>
-            <div class="avatar-container">
-            </div>
-          </div>
+          </template>
         </div>
       </div>
       <div class="mt-4">
@@ -303,7 +313,7 @@ export default class Main extends Vue {
         }
 
         .comment-content {
-          font-size: .9375rem;
+          font-size: .8125rem;
           color: #024397;
           word-break: break-all;
         }
