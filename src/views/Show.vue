@@ -1,7 +1,17 @@
 <template>
-  <pull-to class="section" :bottom-load-method="toDetail" :bottom-config="{pullText:'',triggerText:''}">
-    <introduce-view :company="company" :show="show"></introduce-view>
-    <history-view :company="company" :show="show"></history-view>
+  <pull-to
+    class="section"
+    :bottom-load-method="toDetail"
+    :bottom-config="{pullText:'',triggerText:''}"
+  >
+    <introduce-view
+      :company="company"
+      :show="show"
+    />
+    <history-view
+      :company="company"
+      :show="show"
+    />
   </pull-to>
   <!--  <swiper v-else :options="swiperOption" ref="swiper" style="" class="swiper-box section" @slideChange="swiperChange">-->
   <!--    <swiper-slide class="swiper-item" v-if="show">-->

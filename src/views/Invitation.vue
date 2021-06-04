@@ -1,17 +1,34 @@
 <template>
   <div v-if="detail.id">
-    <transition-group name="ab" tag="div" class="animate-background">
-      <div v-for="item in background_list" :key="item"></div>
+    <transition-group
+      name="ab"
+      tag="div"
+      class="animate-background"
+    >
+      <div
+        v-for="item in background_list"
+        :key="item"
+      />
     </transition-group>
     <transition name="fade">
-      <div class="content" v-if="show">
+      <div
+        v-if="show"
+        class="content"
+      >
         <div class="inner">
           <div>
-            <img class="title" src="../images/invitation/title.png" alt="">
+            <img
+              class="title"
+              src="../images/invitation/title.png"
+              alt=""
+            >
           </div>
           <div>
             <div class="logo">
-              <img :src="detail.logoView" alt="">
+              <img
+                :src="detail.logoView"
+                alt=""
+              >
             </div>
           </div>
           <div class="name">
@@ -20,20 +37,31 @@
           <div class="welcome">
             邀请您莅临参观2019年中国<br>国际消防设备技术交流展
           </div>
-          <div class="date">10.16-10.19</div>
-          <div class="location">中国国际展览中心(新馆)</div>
+          <div class="date">
+            10.16-10.19
+          </div>
+          <div class="location">
+            中国国际展览中心(新馆)
+          </div>
           <div class="place">
             <div class="place-inner">
               {{ detail.place }}
             </div>
           </div>
-          <div><img class="qr-code" :src="detail.qr" alt=""></div>
-          <div class="tip">长按识别二维码</div>
+          <div>
+            <img
+              class="qr-code"
+              :src="detail.qr"
+              alt=""
+            >
+          </div>
+          <div class="tip">
+            长按识别二维码
+          </div>
         </div>
       </div>
     </transition>
   </div>
-
 </template>
 
 <script>
@@ -48,7 +76,7 @@ export default class Invitation extends Vue {
   background_list = []
   show = false
 
-  @Watch('detail', {deep: true})
+  @Watch('detail', { deep: true })
   handlerDetailChange () {
     this.setShareMessage()
   }
@@ -69,17 +97,17 @@ export default class Invitation extends Vue {
   }
 
   setShareMessage () {
-    const {detail} = this
+    const { detail } = this
     wxApi.shareTimeline({
       title: detail.name + '邀请您莅临参观2019年中国国际消防设备技术交流展', // 分享标题
       link: window.location.href, // 分享链接
-      imgUrl: 'http://www.view-ol.com/logo.png', // 分享图标
+      imgUrl: 'http://www.view-ol.com/logo.png' // 分享图标
     })
     wxApi.shareAppMessage({
       title: detail.name + '邀请您莅临参观2019年中国国际消防设备技术交流展', // 分享标题
       desc: detail.content, // 分享描述
       link: window.location.href, // 分享链接
-      imgUrl: 'http://www.view-ol.com/logo.png', // 分享图标
+      imgUrl: 'http://www.view-ol.com/logo.png' // 分享图标
     })
   }
 }
@@ -227,7 +255,6 @@ export default class Invitation extends Vue {
     }
   }
 }
-
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;

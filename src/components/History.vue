@@ -3,15 +3,31 @@
     <div class="container text-center pl-3 pr-3">
       <div class="d-flex flex-column align-items-center section-header full">
         <div class="d-flex align-items-center">
-          <img class="logo-image" :src="company.logoView" alt="Logo">
+          <img
+            class="logo-image"
+            :src="company.logoView"
+            alt="Logo"
+          >
         </div>
-        <div class="main-title">发展历程</div>
-        <div class="sub-title">development path</div>
+        <div class="main-title">
+          发展历程
+        </div>
+        <div class="sub-title">
+          development path
+        </div>
       </div>
       <div class="progresses">
-        <div class="d-flex item" v-for="(item, index) in progresses" :key="index">
-          <div class="date">{{ item.times }}</div>
-          <div class="point ml-2 mr-2"><span></span></div>
+        <div
+          v-for="(item, index) in progresses"
+          :key="index"
+          class="d-flex item"
+        >
+          <div class="date">
+            {{ item.times }}
+          </div>
+          <div class="point ml-2 mr-2">
+            <span />
+          </div>
           <div class="content text-left pb-3 flex-1">
             <div class="desc">
               {{ item.des }}
@@ -20,7 +36,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -34,11 +49,9 @@ import { Component, Vue } from 'vue-property-decorator'
   }
 })
 export default class History extends Vue {
-
   get progresses () {
     return this.show && this.show.progresses ? this.show.progresses.reverse() : []
   }
-
 }
 </script>
 

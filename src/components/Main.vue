@@ -3,12 +3,22 @@
     <div class="container">
       <div class="d-flex justify-content-center">
         <div class="d-flex flex-column align-items-center section-header">
-          <img class="logo-image" :src="company.logoView" alt="Logo"/>
-          <div class="name">{{ company.name }}</div>
+          <img
+            class="logo-image"
+            :src="company.logoView"
+            alt="Logo"
+          >
+          <div class="name">
+            {{ company.name }}
+          </div>
         </div>
       </div>
       <div class="d-flex flex-column align-items-center place-container">
-        <img class="exhibition-logo" src="@/images/logo.png" alt="">
+        <img
+          class="exhibition-logo"
+          src="@/images/logo.png"
+          alt=""
+        >
         <div class="mt-2 welcome">
           欢迎您莅临参观
         </div>
@@ -16,80 +26,153 @@
           2021年10月12-15日&nbsp;&nbsp;&nbsp;&nbsp;中国国际展览中心（新馆）
         </div>
         <div class="mt-3 mb-4 place d-flex flex-column align-items-center">
-          <div class="top">{{ company.place }}</div>
-          <div class="bottom">我司展位号</div>
+          <div class="top">
+            {{ company.place }}
+          </div>
+          <div class="bottom">
+            我司展位号
+          </div>
         </div>
       </div>
       <div class="d-flex flex-column align-items-center product pt-3 pb-3">
-        <div class="title">展品</div>
+        <div class="title">
+          展品
+        </div>
         <div class="w-100">
-          <swiper class="list p-2 pb-3" :options="swiperOption">
-            <swiper-slide class="item" v-for="item in product" :key="item.id" @click.native="toProduct(item.id)">
+          <swiper
+            class="list p-2 pb-3"
+            :options="swiperOption"
+          >
+            <swiper-slide
+              v-for="item in product"
+              :key="item.id"
+              class="item"
+              @click.native="toProduct(item.id)"
+            >
               <div class="image-container">
-                <img :src="item.imageView" :alt="item.name"/>
+                <img
+                  :src="item.imageView"
+                  :alt="item.name"
+                >
               </div>
-              <div class="name">{{ item.name }}</div>
+              <div class="name">
+                {{ item.name }}
+              </div>
             </swiper-slide>
-            <div class="swiper-pagination" slot="pagination"></div>
+            <div
+              slot="pagination"
+              class="swiper-pagination"
+            />
           </swiper>
         </div>
       </div>
       <div class="see d-flex flex-column align-items-center pt-3 pb-3">
-        <div class="title">围观</div>
+        <div class="title">
+          围观
+        </div>
         <div class="avatar-list pt-3">
           <div class="d-flex flex-wrap justify-content-center">
-            <img v-for="item in see" v-if="item.headImgUrl" :key="item.id" class="avatar" :src="item.headImgUrl"
-                 alt=""/>
+            <img
+              v-for="item in see"
+              v-show="item.headImgUrl"
+              :key="item.id"
+              class="avatar"
+              :src="item.headImgUrl"
+              alt=""
+            >
           </div>
         </div>
       </div>
       <div class="praise d-flex flex-column align-items-center pt-3 pb-3">
-        <div class="title">点赞</div>
-        <div class="mt-3 icon" @click="praiseCompany">
-          <img src="../images/praise.png" alt/>
+        <div class="title">
+          点赞
         </div>
-        <div class="mt-2 desc">喜欢就点个赞吧</div>
-        <div class="count">({{ praise.length }}赞)</div>
+        <div
+          class="mt-3 icon"
+          @click="praiseCompany"
+        >
+          <img
+            src="../images/praise.png"
+            alt
+          >
+        </div>
+        <div class="mt-2 desc">
+          喜欢就点个赞吧
+        </div>
+        <div class="count">
+          ({{ praise.length }}赞)
+        </div>
         <div class="mt-2 pl-3 pr-3 text-left people">
-          <span v-for="item in praise">{{ item.userName }}, </span>
+          <span
+            v-for="item in praise"
+            :key="item.userName"
+          >{{ item.userName }}, </span>
         </div>
       </div>
       <div class="comment d-flex flex-column align-items-center pt-3 pb-3">
-        <div class="title">评论</div>
+        <div class="title">
+          评论
+        </div>
         <div class="p-2 pt-0">
-          <template v-for="item in comment" >
-            <div class="d-flex mt-3 item"  >
+          <div
+            v-for="item in comment"
+            :key="item.headImgUrl"
+          >
+            <div
+              :key="item.headImgUrl"
+              class="d-flex mt-3 item"
+            >
               <div class="avatar-container">
-                <img class="avatar"
-                     :src="item.headImgUrl"
-                     alt=""/>
+                <img
+                  class="avatar"
+                  :src="item.headImgUrl"
+                  alt=""
+                >
               </div>
               <div class="ml-1 mr-1 pb-3 flex-1 text-left detail">
                 <!--              <div class="nickname">{{ item.userName }}</div>-->
                 <!--              <div class="date mt-1">{{ item.cTime | date }}</div>-->
-                <div class="mt-2 comment-content">{{ item.comment }}</div>
+                <div class="mt-2 comment-content">
+                  {{ item.comment }}
+                </div>
               </div>
-              <div class="avatar-container">
-              </div>
+              <div class="avatar-container" />
             </div>
-            <div class="d-flex mt-3 item reply" v-if="item.reply" >
+            <div
+              v-if="item.reply"
+              class="d-flex mt-3 item reply"
+            >
               <div class="avatar-container">
-                <img class="avatar" :src="company.logoView" alt="">
+                <img
+                  class="avatar"
+                  :src="company.logoView"
+                  alt=""
+                >
               </div>
               <div class="ml-1 mr-1 pb-3 flex-1 text-left detail">
-                <div class="mt-2 comment-content">{{ item.reply }}</div>
+                <div class="mt-2 comment-content">
+                  {{ item.reply }}
+                </div>
               </div>
-              <div class="avatar-container">
-              </div>
+              <div class="avatar-container" />
             </div>
-          </template>
+          </div>
         </div>
       </div>
       <div class="mt-4">
         <form @submit.prevent="commentCompany">
           <div class="add-on">
-            <input class="field" placeholder="我也要评论" v-model="comment_content">
-            <button type="submit" class="item">发送</button>
+            <input
+              v-model="comment_content"
+              class="field"
+              placeholder="我也要评论"
+            >
+            <button
+              type="submit"
+              class="item"
+            >
+              发送
+            </button>
           </div>
         </form>
       </div>
@@ -111,10 +194,10 @@ import _ from 'lodash'
   },
   filters: {
     date: (date) => {
-      let d = new Date(date),
-          month = '' + (d.getMonth() + 1),
-          day = '' + d.getDate(),
-          year = d.getFullYear()
+      const d = new Date(date)
+      let month = '' + (d.getMonth() + 1)
+      let day = '' + d.getDate()
+      const year = d.getFullYear()
 
       if (month.length < 2) month = '0' + month
       if (day.length < 2) day = '0' + day
@@ -142,7 +225,7 @@ export default class Main extends Vue {
   @Emit('comment')
   commentCompany () {
     if (!this.comment_content) return
-    let data = _.clone(this.comment_content)
+    const data = _.clone(this.comment_content)
     this.comment_content = ''
     return data
   }
@@ -157,7 +240,6 @@ export default class Main extends Vue {
 </script>
 
 <style lang="scss" scoped>
-
 
 .section {
   overflow-y: auto;
@@ -320,7 +402,6 @@ export default class Main extends Vue {
       }
     }
   }
-
 
   .add-on {
     display: flex;

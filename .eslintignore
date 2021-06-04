@@ -1,0 +1,3 @@
+./static/*.js
+src/runtime/*.js
+./src/tool/*.js

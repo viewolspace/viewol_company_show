@@ -3,13 +3,23 @@
     <div class="flex-grow-1 container d-flex align-items-center">
       <div class="content flex-grow-1">
         <div class="d-flex align-items-center">
-          <div class="label">电话</div>
+          <div class="label">
+            电话
+          </div>
           <div class="flex-grow-1">
-            <input :class="{'error':error}" type="text" v-model="phone" placeholder="输入手机号">
+            <input
+              v-model="phone"
+              :class="{'error':error}"
+              type="text"
+              placeholder="输入手机号"
+            >
           </div>
         </div>
         <div class="text-center">
-          <a class="commit" @click="checkInAction">签到</a>
+          <a
+            class="commit"
+            @click="checkInAction"
+          >签到</a>
         </div>
       </div>
     </div>
@@ -22,7 +32,7 @@ import { Action } from 'vuex-class'
 
 @Component
 export default class CheckIn extends Vue {
-  @Prop({required: true}) bbsId
+  @Prop({ required: true }) bbsId
 
   @Action('checkIn') postCheckIn
 
@@ -51,7 +61,7 @@ export default class CheckIn extends Vue {
   }
 
   validatePhone () {
-    const {phone} = this
+    const { phone } = this
     return phone && /^1[0-9]{10}$/.test(phone)
   }
 
@@ -110,7 +120,6 @@ export default class CheckIn extends Vue {
         border-radius: 2rem;
       }
     }
-
 
   }
 }

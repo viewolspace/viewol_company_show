@@ -11,9 +11,9 @@ const wxApi = {
    */
   async register (callback) {
     // 这边的接口请换成你们自己的
-    const {result: data} = await axios.get('https://www.view-ol.com/viewol_web/wx/jsapiSignature', {params: {url: window.location.href}})
+    const { result: data } = await axios.get('https://www.view-ol.com/viewol_web/wx/jsapiSignature', { params: { url: window.location.href } })
     console.log(data)
-    const {wx} = window
+    const { wx } = window
     const config = {
       debug: false, // 开启调试模式
       appId: data.appId, // 必填，公众号的唯一标识
@@ -31,7 +31,7 @@ const wxApi = {
   },
 
   shareTimeline (option) {
-    const {wx} = window
+    const { wx } = window
     wx.onMenuShareTimeline({
       title: option.title, // 分享标题
       link: option.link, // 分享链接
@@ -48,7 +48,7 @@ const wxApi = {
   },
 
   shareAppMessage (option) {
-    const {wx} = window
+    const { wx } = window
     wx.onMenuShareAppMessage({
       title: option.title, // 分享标题
       desc: option.desc, // 分享描述

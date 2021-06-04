@@ -1,7 +1,18 @@
 <template>
-  <pull-to :top-load-method="back" :top-config="config" :is-top-bounce="!!show">
-    <main-view :product="product" :company="company" :comment="comment" :praise="praise" :see="see"
-               @comment="commentCompany" @praise="praiseCompany"></main-view>
+  <pull-to
+    :top-load-method="back"
+    :top-config="config"
+    :is-top-bounce="!!show"
+  >
+    <main-view
+      :product="product"
+      :company="company"
+      :comment="comment"
+      :praise="praise"
+      :see="see"
+      @comment="commentCompany"
+      @praise="praiseCompany"
+    />
   </pull-to>
 </template>
 
@@ -31,7 +42,7 @@ export default class Detail extends Vue {
   config = {
     pullText: '', // 下拉时显示的文字
     triggerText: '', // 下拉到触发距离时显示的文字
-    loadingText: '', // 加载中的文字
+    loadingText: '' // 加载中的文字
   }
 
   back () {

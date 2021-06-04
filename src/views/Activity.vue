@@ -1,39 +1,62 @@
 <template>
-  <div class="activity-page-container" v-if="info">
-    <img class="nav" src="@/images/nav.png" alt=""/>
-    <div class="divide"></div>
+  <div
+    v-if="info"
+    class="activity-page-container"
+  >
+    <img
+      class="nav"
+      src="@/images/nav.png"
+      alt=""
+    >
+    <div class="divide" />
     <div class="title-container">
-      <div class="title">{{ info.mc }}</div>
-      <div class="sub-title">智慧消防 引领未来</div>
+      <div class="title">
+        {{ info.mc }}
+      </div>
+      <div class="sub-title">
+        智慧消防 引领未来
+      </div>
       <div class="enterprise">
         <div>主办 {{ info.companyName }}</div>
         <div>承办 {{ info.cb }}</div>
         <div>协办 {{ info.xb }}</div>
         <div>特约支持 {{ info.tyzc }}</div>
       </div>
-      <div class="host">主持人 {{ info.zcr }}</div>
+      <div class="host">
+        主持人 {{ info.zcr }}
+      </div>
     </div>
-    <div class="divide"></div>
+    <div class="divide" />
     <div class="content">
       <div class="position">
         <div>地点 {{ info.dd }}</div>
         <div>规模：{{ info.gm }}</div>
       </div>
       <div class="list">
-        <div class="item" :class="{'expand':show[$index]}" v-for="(item, $index) in info.list" :key="$index">
-          <div class="time">{{ item.sj }}</div>
+        <div
+          v-for="(item, $index) in info.list"
+          :key="$index"
+          class="item"
+          :class="{'expand':show[$index]}"
+        >
+          <div class="time">
+            {{ item.sj }}
+          </div>
           <div class="topic">
             <div>题目 {{ item.tm }}</div>
             <div>单位 {{ item.dw }}</div>
           </div>
           <transition
-              name="expand"
-              @enter="enter"
-              @after-enter="afterEnter"
-              @leave="leave"
+            name="expand"
+            @enter="enter"
+            @after-enter="afterEnter"
+            @leave="leave"
           >
             <div v-if="show[$index]">
-              <div class="more-detail" v-if="item.zcrjs">
+              <div
+                v-if="item.zcrjs"
+                class="more-detail"
+              >
                 <div class="more-detail-title">
                   主持人 {{ item.zcr }}
                 </div>
@@ -41,16 +64,29 @@
                   {{ item.zcrjs }}
                 </div>
               </div>
-              <div class="more-detail" v-if="item.zjgy">
-                <div class="more-detail-title">主讲概要</div>
+              <div
+                v-if="item.zjgy"
+                class="more-detail"
+              >
+                <div class="more-detail-title">
+                  主讲概要
+                </div>
                 <div class="more-detail-info">
                   {{ item.zjgy }}
                 </div>
               </div>
             </div>
           </transition>
-          <a class="more-icon" @click="toggleShow($index)" v-if="item.zjgy || item.zcrjs">
-            <img class="more" src="@/images/more.png" alt=""/>
+          <a
+            v-if="item.zjgy || item.zcrjs"
+            class="more-icon"
+            @click="toggleShow($index)"
+          >
+            <img
+              class="more"
+              src="@/images/more.png"
+              alt=""
+            >
           </a>
         </div>
       </div>
@@ -59,7 +95,7 @@
 </template>
 
 <script>
-import { Vue, Watch, Component } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 import { State } from 'vuex-class'
 
 @Component
@@ -101,14 +137,12 @@ export default class Activity extends Vue {
   }
 
   leave (element) {
-    const height = getComputedStyle(element).height
-    element.style.height = height
+    element.style.height = getComputedStyle(element).height
     getComputedStyle(element).height
     requestAnimationFrame(() => {
       element.style.height = 0
     })
   }
-
 }
 </script>
 
@@ -169,7 +203,6 @@ html {
     }
   }
 
-
   .enterprise {
     margin-top: 0.45rem;
     padding-left: 2.17rem;
@@ -217,7 +250,6 @@ html {
       margin-bottom: 1rem;
     }
   }
-
 
   .time {
     width: 100%;
@@ -289,7 +321,6 @@ html {
     transform: translate(-50%, -50%) rotate(180deg);
   }
 }
-
 
 .expand-enter-active,
 .expand-leave-active {

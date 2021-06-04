@@ -21,7 +21,7 @@ export default new Vuex.Store({
     invitation_detail: {}
   },
   actions: {
-    async getCompanyInformation ({commit, state}) {
+    async getCompanyInformation ({ commit, state }) {
       const {
         result: company,
         comment,
@@ -34,13 +34,13 @@ export default new Vuex.Store({
           userId: state.user_id
         }
       })
-      const data = {company, comment, praise, see, showInfo}
+      const data = { company, comment, praise, see, showInfo }
       commit('SET_SHOW_INFO', data)
       return data
     },
 
-    async getProductList ({commit, state}, params) {
-      const {result} = await axios.get(`${state.base_url}/product/listProduct`, {
+    async getProductList ({ commit, state }) {
+      const { result } = await axios.get(`${state.base_url}/product/listProduct`, {
         params: {
           expoId: state.expo_id,
           companyId: state.company_id,
@@ -50,8 +50,8 @@ export default new Vuex.Store({
       commit('SET_PRODUCT', result)
     },
 
-    async praiseCompany ({state, dispatch}) {
-      const {status} = await axios.post(`${state.base_url}/company/praise`, qs.stringify({
+    async praiseCompany ({ state, dispatch }) {
+      const { status } = await axios.post(`${state.base_url}/company/praise`, qs.stringify({
         userId: state.user_id,
         comId: state.company_id
       }), {
@@ -62,8 +62,8 @@ export default new Vuex.Store({
       if (status === '0000') dispatch('getCompanyInformation')
     },
 
-    async commentCompany ({state, dispatch}, comment) {
-      const {status} = await axios.post(`${state.base_url}/company/comment`, qs.stringify({
+    async commentCompany ({ state, dispatch }, comment) {
+      const { status } = await axios.post(`${state.base_url}/company/comment`, qs.stringify({
         userId: state.user_id,
         comId: state.company_id,
         content: comment
@@ -75,8 +75,8 @@ export default new Vuex.Store({
       if (status === '0000') dispatch('getCompanyInformation')
     },
 
-    async getActivityDetail ({commit, state}, id) {
-      const {result} = await axios.get(`${state.base_url}/schedule/getSchedule`, {
+    async getActivityDetail ({ commit, state }, id) {
+      const { result } = await axios.get(`${state.base_url}/schedule/getSchedule`, {
         params: {
           userId: state.user_id,
           id
@@ -86,8 +86,8 @@ export default new Vuex.Store({
       commit('SET_ACTIVITY_DETAIL', result)
     },
 
-    async getCompanyAndQr ({commit, state}, id) {
-      const {qr, result} = await axios.get(`${state.base_url}/company/getCompanyAndQr`, {
+    async getCompanyAndQr ({ commit, state }, id) {
+      const { qr, result } = await axios.get(`${state.base_url}/company/getCompanyAndQr`, {
         params: {
           maNum: 3,
           id,
@@ -100,7 +100,7 @@ export default new Vuex.Store({
       commit('SET_INVITATION_DETAIL', result)
     },
 
-    async signUp ({state}, params) {
+    async signUp ({ state }, params) {
       const result = await axios.post(`${state.base_url}/buser/userJoinBbs`, qs.stringify({
         name: params.name,
         sex: params.sex,
@@ -110,37 +110,37 @@ export default new Vuex.Store({
         email: params.email,
         idea: params.idea,
         bbsId: params.bbsId,
-        address: params.address,
+        address: params.address
       }), {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
       })
 
-      console.log()
+      console.log(result)
     },
 
-    async checkIn ({state}, params) {
+    async checkIn ({ state }, params) {
       return await axios.post(`${state.base_url}/buser/userSignBbs`, qs.stringify({
         phone: params.phone,
-        bbsId: params.bbsId,
+        bbsId: params.bbsId
       }), {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
       })
     }
-  }
-  ,
+  },
+
   mutations: {
-    SET_SHOW_INFO (state, {company, comment, praise, see, showInfo}) {
+    SET_SHOW_INFO (state, { company, comment, praise, see, showInfo }) {
       document.title = company.name
       state.company = company
       state.comment = comment
       state.praise = praise
       state.see = see
       if (showInfo) {
-        let show = JSON.parse(showInfo)
+        const show = JSON.parse(showInfo)
         show.showFlag = (show.showFlag === '1')
         state.show = show
       }
@@ -150,12 +150,12 @@ export default new Vuex.Store({
       state.product = product
     },
 
-    SET_BASIC_INFO (state, {user_id, company_id}) {
+    SET_BASIC_INFO (state, { user_id, company_id }) {
       state.user_id = user_id
       state.company_id = company_id
     },
-    SET_ACTIVITY_DETAIL (state, {contentView, companyName}) {
-      state.activity_detail = contentView ? {...JSON.parse(contentView), companyName} : null
+    SET_ACTIVITY_DETAIL (state, { contentView, companyName }) {
+      state.activity_detail = contentView ? { ...JSON.parse(contentView), companyName } : null
     },
     SET_INVITATION_DETAIL (state, detail) {
       state.invitation_detail = detail

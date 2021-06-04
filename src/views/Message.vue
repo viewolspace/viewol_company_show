@@ -2,10 +2,31 @@
   <div class="message-container">
     <div class="text-center d-flex justify-content-center align-items-center">
       <div class="">
-        <div><img class="icon" :src="icon" alt=""></div>
-        <div class="message" v-if="message">{{ message }}</div>
-        <div class="sub-message" v-if="sub_message">{{ sub_message }}</div>
-        <div class="action" v-if="action"><a @click="handlerAction">{{ action }}</a></div>
+        <div>
+          <img
+            class="icon"
+            :src="icon"
+            alt=""
+          >
+        </div>
+        <div
+          v-if="message"
+          class="message"
+        >
+          {{ message }}
+        </div>
+        <div
+          v-if="sub_message"
+          class="sub-message"
+        >
+          {{ sub_message }}
+        </div>
+        <div
+          v-if="action"
+          class="action"
+        >
+          <a @click="handlerAction">{{ action }}</a>
+        </div>
       </div>
     </div>
   </div>
@@ -19,8 +40,8 @@ import icon_success_check_in from '@/images/message/icon_success_check_in.png'
 
 @Component
 export default class Message extends Vue {
-  @Prop({required: true}) type
-  @Prop({required: true}) bbsId
+  @Prop({ required: true }) type
+  @Prop({ required: true }) bbsId
 
   icon = null
   sub_message = null
@@ -74,7 +95,6 @@ export default class Message extends Vue {
       width: 10rem;
     }
 
-
     .message {
       margin-top: 2rem;
       font-size: 1.3rem;
@@ -94,8 +114,6 @@ export default class Message extends Vue {
       padding: .3rem 1rem;
       border-radius: 1rem;
     }
-
   }
-
 }
 </style>
