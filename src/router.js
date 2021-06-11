@@ -8,6 +8,11 @@ import InvitationType from './views/InvitationType.vue'
 import Message from './views/Message.vue'
 import SignUp from './views/SignUp.vue'
 import CheckIn from './views/CheckIn.vue'
+import Innovation from './views/Innovation.vue'
+import InnovationIntroduce from '@/components/innovation/Introduce.vue'
+import InnovationVote from '@/components/innovation/Vote.vue'
+import InnovationRank from '@/components/innovation/Rank.vue'
+import InnovationSearch from '@/components/innovation/Search.vue'
 
 Vue.use(Router)
 
@@ -27,6 +32,41 @@ export default new Router({
       path: '/activity',
       name: 'activity',
       component: Activity
+    },
+    {
+      path: '/innovation',
+      name: 'innovation',
+      component: Innovation,
+      redirect: { name: 'innovation_introduce' },
+      children: [{
+        path: '/innovation/introduce',
+        name: 'innovation_introduce',
+        meta: {
+          tab: 'introduce'
+        },
+        component: InnovationIntroduce
+      }, {
+        path: '/innovation/vote',
+        name: 'innovation_vote',
+        meta: {
+          tab: 'vote'
+        },
+        component: InnovationVote
+      }, {
+        path: '/innovation/Rank',
+        name: 'innovation_rank',
+        meta: {
+          tab: 'rank'
+        },
+        component: InnovationRank
+      }, {
+        path: '/innovation/search',
+        name: 'innovation_search',
+        meta: {
+          tab: 'search'
+        },
+        component: InnovationSearch
+      }]
     },
     {
       path: '/invitation',

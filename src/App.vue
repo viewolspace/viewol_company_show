@@ -33,6 +33,11 @@ export default class App extends Vue {
       case 'sign-up':
       case 'check-in':
       case 'message':
+      case 'innovation':
+      case 'innovation_introduce':
+      case 'innovation_rank':
+      case 'innovation_vote':
+      case 'innovation_search':
         break
       default:
         await this.processMain()
