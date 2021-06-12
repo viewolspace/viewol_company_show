@@ -13,6 +13,7 @@ import InnovationIntroduce from '@/components/innovation/Introduce.vue'
 import InnovationVote from '@/components/innovation/Vote.vue'
 import InnovationRank from '@/components/innovation/Rank.vue'
 import InnovationSearch from '@/components/innovation/Search.vue'
+import InnovationCanvassing from '@/components/innovation/Canvassing.vue'
 
 Vue.use(Router)
 
@@ -67,6 +68,11 @@ export default new Router({
         },
         component: InnovationSearch
       }]
+    },
+    {
+      path: '/innovation/canvassing',
+      name: 'innovation_canvassing',
+      component: InnovationCanvassing
     },
     {
       path: '/invitation',

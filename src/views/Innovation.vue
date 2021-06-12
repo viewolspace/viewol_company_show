@@ -1,6 +1,6 @@
 <template>
   <div class="innovation-container">
-    <router-view />
+    <router-view class="content-container" />
     <div class="bar">
       <div class="item">
         <img
@@ -63,10 +63,16 @@ class Innovation extends Vue {
   padding: 0.9rem 0.7rem;
 }
 
+.content-container{
+  margin-bottom: 3rem;
+}
+
 .bar {
+  border-top: 2px solid #D72316;
   position: fixed;
+  left: 0;
   bottom: 0;
-  width: 100%;
+  right: 0;
   display: flex;
   align-items: center;
   height: 3.48rem;
