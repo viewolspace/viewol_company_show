@@ -3,7 +3,7 @@
     <div class="count">
       <div class="item">
         <div class="number">
-          --
+          {{ detail.rank }}
         </div>
         <div class="desc">
           排名
@@ -21,7 +21,7 @@
       <div class="divide" />
       <div class="item">
         <div class="number">
-          --
+          {{ detail.lastNum }}
         </div>
         <div class="desc">
           距上一名
