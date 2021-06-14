@@ -6,6 +6,7 @@
  */
 
 import axios from 'axios'
+import Vue from 'vue'
 
 export default () => {
   axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL
@@ -17,6 +18,7 @@ export default () => {
         case '0000': // 成功
           return Promise.resolve(data)
         default:
+          Vue.toasted.show(data.message)
           return Promise.reject(data.message)
       }
     }

@@ -471,7 +471,7 @@ class Vote extends Vue {
       padding: 0.9rem 0.33rem;
       flex-direction: column;
       align-items: center;
-      width: 10.55rem;
+      width: 48%;
       background: #A0C9FD;
       border: 1px solid #A0C9FD;
 

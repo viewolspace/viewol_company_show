@@ -65,8 +65,20 @@
         <button @click="vote()">
           投票
         </button>
-        <button>为我拉票</button>
+        <button @click="share=true">
+          为我拉票
+        </button>
       </div>
+    </div>
+    <div
+      v-if="share"
+      class="share"
+      @click="share=false"
+    >
+      <img
+        src="@/images/guide_share.png"
+        alt=""
+      >
     </div>
   </div>
 </template>
@@ -75,6 +87,7 @@
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import * as ProductAPI from '@/api/product'
 import { State } from 'vuex-class'
+import wxApi from '@/helpers/share'
 
 export default @Component({})
 class VoteProduct extends Vue {
@@ -82,6 +95,7 @@ class VoteProduct extends Vue {
   @Prop({ required: true }) id
 
   detail = {}
+  share = false
 
   get productImages () {
     return _.compact(this.detail.vPic?.split(',') || [])
@@ -93,14 +107,29 @@ class VoteProduct extends Vue {
 
   async getProductDetail () {
     const { result } = await ProductAPI.getIdeaDetail(this.id)
-    console.log(result)
     this.detail = result
+    await this.setShareMessage()
   }
 
   async vote () {
     const { message } = await ProductAPI.vote(this.id, this.openId)
     this.$toasted.show(message)
     await this.getProductDetail()
+  }
+
+  setShareMessage () {
+    const { detail } = this
+    wxApi.shareTimeline({
+      title: detail.companyName + '邀请您莅临参观2021年中国国际消防设备技术交流展', // 分享标题
+      link: window.location.href, // 分享链接
+      imgUrl: 'http://www.view-ol.com/logo.png' // 分享图标
+    })
+    wxApi.shareAppMessage({
+      title: detail.companyName + '邀请您莅临参观2021年中国国际消防设备技术交流展', // 分享标题
+      desc: detail.content, // 分享描述
+      link: window.location.href, // 分享链接
+      imgUrl: 'http://www.view-ol.com/logo.png' // 分享图标
+    })
   }
 }
 </script>
@@ -225,6 +254,25 @@ class VoteProduct extends Vue {
       }
     }
 
+  }
+
+  .share {
+    position: fixed;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.8);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    padding-right: 1.5rem;
+    flex-direction: column;
+    align-items: flex-end;
+
+    img {
+      width: 244px;
+      height: 200px;
+    }
   }
 }
 </style>

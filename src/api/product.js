@@ -1,4 +1,5 @@
 import axios from 'axios'
+import qs from 'qs'
 
 export function getIdeaList ({ name, categoryId, pageIndex, num = 20 }) {
   return axios.get('/product/listIdea', {
@@ -17,8 +18,12 @@ export function getSummary () {
 }
 
 export function vote (productId, openId) {
-  return axios.post('/product/vote', {
+  return axios.post('/product/vote', qs.stringify({
     openId,
     productId
+  }), {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
   })
 }

@@ -454,6 +454,7 @@ class Rank extends Vue {
   }
 
   .rank-list-container {
+    width: 100%;
     margin-top: 1.06rem;
     display: flex;
     flex-direction: column;
