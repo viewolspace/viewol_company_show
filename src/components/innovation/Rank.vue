@@ -533,6 +533,7 @@ class Rank extends Vue {
     }
 
     .rank-list-bottom {
+      width: 100%;
       margin-top: 0.58rem;
       position: relative;
       background: #0259C7;
