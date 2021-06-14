@@ -265,6 +265,7 @@ class VoteProduct extends Vue {
     width: 100vw;
     height: 100vh;
     display: flex;
+    padding-top: 1rem;
     padding-right: 1.5rem;
     flex-direction: column;
     align-items: flex-end;
