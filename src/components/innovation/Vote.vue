@@ -218,7 +218,7 @@ class Vote extends Vue {
   mounted () {
     this.getDefaultCondition()
     this.getProductSummary()
-    this.getIdeaProductList()
+    this.getIdeaProductList(true)
     this.startCountDown()
   }
 
