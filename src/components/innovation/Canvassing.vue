@@ -3,15 +3,17 @@
     <div class="detail-container">
       <img
         class="logo"
-        src=""
+        :src="detail.comLogo"
         alt=""
       >
       <div class="information">
-        <div>产品ID：<span class="highlight">9048</span></div>
-        <div>产品名称：城市级消防物联网平台</div>
-        <div>型号：zhilusaas 1.0</div>
-        <div>参选：智慧消防技术产品</div>
-        <div>企业名称：深圳知路科技有限公司</div>
+        <div>产品ID：<span class="highlight">{{ detail.productId }}</span></div>
+        <div>产品名称：{{ detail.productName }}</div>
+        <div>型号：{{ detail.desc }}</div>
+        <div>参选：{{ detail.categoryId }}</div>
+        <div>
+          企业名称：{{ detail.companyName }}
+        </div>
         <img
           class="qrcode"
           src=""
@@ -26,11 +28,22 @@
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator'
+import * as ProductAPI from '@/api/product'
 
 export default @Component({})
 class Canvassing extends Vue {
+  @Prop({ required: true }) id
+  detail = {}
 
+  mounted () {
+    this.getProductDetail()
+  }
+
+  async getProductDetail () {
+    const { result } = await ProductAPI.getIdeaDetail(this.id)
+    this.detail = result
+  }
 }
 </script>
 
@@ -45,7 +58,7 @@ class Canvassing extends Vue {
     padding: 1.28rem 1.52rem;
     display: flex;
     font-size: 0.76rem;
-    font-weight: 400;
+    font-weight: 500;
     color: #FFFFFF;
 
     .logo {
@@ -62,6 +75,10 @@ class Canvassing extends Vue {
     .information {
       display: flex;
       flex-direction: column;
+
+      .highlight {
+        color: #FFE204;
+      }
 
       .qrcode {
         margin-top: 1.52rem;

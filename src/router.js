@@ -75,8 +75,9 @@ export default new Router({
         component: InnovationSearch
       },
       {
-        path: '/innovation/canvassing',
+        path: '/innovation/canvassing/:id',
         name: 'innovation_canvassing',
+        props: true,
         component: InnovationCanvassing
       }]
     },
