@@ -556,7 +556,7 @@ class Rank extends Vue {
           font-size: 0.87rem;
           font-weight: 500;
           color: #FFE204;
-          margin-right: 0.95rem;
+          width: 1.5rem;
         }
 
         .detail {
