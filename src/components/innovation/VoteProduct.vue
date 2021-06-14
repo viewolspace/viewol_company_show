@@ -108,7 +108,9 @@ class VoteProduct extends Vue {
   async getProductDetail () {
     const { result } = await ProductAPI.getIdeaDetail(this.id)
     this.detail = result
-    await this.setShareMessage()
+    await wxApi.register(() => {
+      this.setShareMessage()
+    })
   }
 
   async vote () {

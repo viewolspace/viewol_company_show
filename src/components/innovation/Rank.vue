@@ -102,9 +102,10 @@
         v-if="topProducts.length"
         class="rank-list-top"
       >
-        <div
+        <router-link
           v-for="(item,index) in topProducts"
           :key="item.productId"
+          :to="{name:'innovation_vote_product',params:{id:item.productId}}"
           class="item"
         >
           <img
@@ -139,15 +140,16 @@
               {{ item.vNum }} 票
             </div>
           </div>
-        </div>
+        </router-link>
       </div>
       <div
         v-if="bottomProducts.length"
         class="rank-list-bottom"
       >
-        <div
+        <router-link
           v-for="(item, index) in bottomProducts"
           :key="item.productId"
+          :to="{name:'innovation_vote_product',params:{id:item.productId}}"
           class="item"
         >
           <div class="rank-no">
@@ -171,7 +173,7 @@
               {{ item.vNum }} 票
             </div>
           </div>
-        </div>
+        </router-link>
         <div
           class="more"
           @click="more=!more"
@@ -182,6 +184,7 @@
             alt=""
           >
         </div>
+        </router-link>
       </div>
     </div>
   </div>

@@ -110,9 +110,10 @@
       </div>
     </div>
     <div class="search-result-container">
-      <div
+      <router-link
         v-for="item in products"
         :key="item.productId"
+        :to="{name:'innovation_vote_product',params:{id:item.productId}}"
         class="item"
       >
         <div class="id">
@@ -130,14 +131,11 @@
           {{ item.productName }}
         </div>
         <div>
-          <router-link
-            class="vote"
-            :to="{name:'innovation_vote_product',params:{id:item.productId}}"
-          >
+          <a class="vote">
             投票
-          </router-link>
+          </a>
         </div>
-      </div>
+      </router-link>
       <div
         v-if="products.length ===1"
         class="item empty"
