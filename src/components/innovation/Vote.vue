@@ -81,7 +81,7 @@
           type="text"
           placeholder="请输入产品编号 名称"
         >
-        <a @click="getIdeaProductList()">搜索</a>
+        <a @click="getIdeaProductList(true)">搜索</a>
       </div>
       <div class="more">
         <router-link
@@ -143,6 +143,12 @@
         class="item empty"
       />
     </div>
+    <div
+      class="load"
+      @click="getIdeaProductList(false)"
+    >
+      {{ loading ? '加载中' : (complete ? '已全部加载' : '点击加载更多') }}
+    </div>
   </div>
 </template>
 
@@ -156,6 +162,8 @@ class Vote extends Vue {
   now = moment()
   startTime = '2021-06-15 00:00:00'
   endTime = '2021-07-10 23:59:59'
+  loading = false
+  complete = false
 
   categoryList = {
     1: '全部',
@@ -169,6 +177,11 @@ class Vote extends Vue {
   condition = {
     keywords: '',
     category: '1'
+  }
+
+  page = {
+    current: 1,
+    size: 20
   }
 
   summary = {
@@ -209,6 +222,11 @@ class Vote extends Vue {
     this.startCountDown()
   }
 
+  async refresh (loaded) {
+    await this.getIdeaProductList(true)
+    loaded('done')
+  }
+
   getDefaultCondition () {
     const { keywords, category } = this.$route.query
     if (keywords) { this.condition.keywords = keywords }
@@ -217,21 +235,41 @@ class Vote extends Vue {
 
   changeCategory (category) {
     this.condition.category = category
-    this.getIdeaProductList()
+    this.getIdeaProductList(true)
   }
 
   async getProductSummary () {
     this.summary = await ProductAPI.getSummary()
   }
 
-  async getIdeaProductList () {
-    const { result } = await ProductAPI.getIdeaList({
-      name: this.condition.keywords,
-      categoryId: this.condition.category,
-      pageIndex: 1,
-      num: 20
-    })
-    this.products = result
+  async getIdeaProductList (reset) {
+    try {
+      if (reset) {
+        this.page.current = 1
+        this.complete = false
+      }
+      if (this.loading || this.complete) {
+        return
+      }
+      this.loading = true
+      const { result } = await ProductAPI.getIdeaList({
+        name: this.condition.keywords,
+        categoryId: this.condition.category,
+        pageIndex: this.page.current,
+        num: this.page.size
+      })
+      if (reset) {
+        this.products = result
+      } else {
+        this.products = this.products.concat(result)
+        if (!result.length) {
+          this.complete = true
+        }
+      }
+      this.page.current++
+    } finally {
+      this.loading = false
+    }
   }
 
   startCountDown () {
@@ -500,6 +538,12 @@ class Vote extends Vue {
         text-align: center;
       }
     }
+  }
+
+  .load {
+    margin-top: 0.5rem;
+    font-size: 12px;
+    color: #ffffff;
   }
 }
 </style>
