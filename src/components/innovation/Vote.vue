@@ -100,18 +100,11 @@
     </div>
     <div class="category-container">
       <div
+        v-for="(item,key) in categoryList"
+        :key="key"
         class="item"
-        :class="{'active':condition.category === ''}"
-        @click="changeCategory('')"
-      >
-        全部
-      </div>
-      <div
-        v-for="item in categoryList"
-        :key="item"
-        class="item"
-        :class="{'active':condition.category === item}"
-        @click="changeCategory(item)"
+        :class="{'active':condition.category === key}"
+        @click="changeCategory(key)"
       >
         {{ item }}
       </div>
@@ -164,13 +157,18 @@ class Vote extends Vue {
   startTime = '2021-06-15 00:00:00'
   endTime = '2021-07-10 23:59:59'
 
-  categoryList = [
-    '智慧消防', '灭火系统和消防器具', '应急救援装备及职业健康', '火灾防护及逃生自救', '消防科研及火灾事故'
-  ]
+  categoryList = {
+    1: '全部',
+    2: '智慧消防',
+    3: '灭火系统和消防器具',
+    4: '应急救援装备及职业健康',
+    5: '火灾防护及逃生自救',
+    6: '消防科研及火灾事故'
+  }
 
   condition = {
     keywords: '',
-    category: ''
+    category: '1'
   }
 
   summary = {

@@ -86,16 +86,10 @@
     </div>
     <div class="category-container">
       <div
+        v-for="(item,key) in categoryList"
+        :key="key"
         class="item"
-        @click="toVotePage({category:''})"
-      >
-        全部
-      </div>
-      <div
-        v-for="item in categoryList"
-        :key="item"
-        class="item"
-        @click="toVotePage({category:item})"
+        @click="toVotePage({category:key})"
       >
         {{ item }}
       </div>
@@ -178,6 +172,16 @@
             </div>
           </div>
         </div>
+        <div
+          class="more"
+          @click="more=!more"
+        >
+          <img
+            :class="{'show':more}"
+            src="@/images/innovation/icon_more.png"
+            alt=""
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -194,9 +198,15 @@ class Rank extends Vue {
   startTime = '2021-06-15 00:00:00'
   endTime = '2021-07-10 23:59:59'
   keywords = ''
-  categoryList = [
-    '智慧消防', '灭火系统和消防器具', '应急救援装备及职业健康', '火灾防护及逃生自救', '消防科研及火灾事故'
-  ]
+  more = false
+  categoryList = {
+    1: '全部',
+    2: '智慧消防',
+    3: '灭火系统和消防器具',
+    4: '应急救援装备及职业健康',
+    5: '火灾防护及逃生自救',
+    6: '消防科研及火灾事故'
+  }
 
   summary = {
     pro: 0,
@@ -211,7 +221,7 @@ class Rank extends Vue {
   }
 
   get bottomProducts () {
-    return this.products.slice(3)
+    return this.products.slice(3, this.more ? 100 : 10)
   }
 
   get countdown () {
@@ -524,6 +534,7 @@ class Rank extends Vue {
       background: #0259C7;
       border: 1px solid #A0C9FD;
       padding: 1.5rem .69rem 1.5rem .98rem;
+      margin-bottom: 1rem;
 
       &:before {
         content: '';
@@ -534,10 +545,10 @@ class Rank extends Vue {
         left: 0;
         background: url("../../images/innovation/icon_ranking.png");
         background-size: 100%;
-
       }
 
       .item {
+        margin-bottom: 2px;
         display: flex;
         align-items: center;
 
@@ -591,6 +602,24 @@ class Rank extends Vue {
           }
         }
 
+      }
+
+      .more {
+        position: absolute;
+        bottom: -1rem;
+        left: 50%;
+        transform: translateX(-50%);
+
+        img {
+          width: 1rem;
+          background: #FFFFFF;
+          border-radius: 1rem;
+          overflow: hidden;
+
+          &.show {
+            transform: rotate(180deg);
+          }
+        }
       }
     }
   }

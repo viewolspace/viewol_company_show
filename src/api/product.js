@@ -16,9 +16,9 @@ export function getSummary () {
   return axios.get('/product/total')
 }
 
-export function vote (productId) {
+export function vote (productId, openId) {
   return axios.post('/product/vote', {
-    openId: 1,
+    openId,
     productId
   })
 }

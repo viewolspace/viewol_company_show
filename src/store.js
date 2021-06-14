@@ -7,6 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    open_id: localStorage.getItem('openId'),
     user_id: -1,
     company_id: -1,
     expo_id: 2,
@@ -20,6 +21,10 @@ export default new Vuex.Store({
     invitation_detail: {}
   },
   actions: {
+    setOpenId ({ state }, openId) {
+      localStorage.setItem('openId', openId)
+      state.open_id = openId
+    },
     async getCompanyInformation ({ commit, state }) {
       const {
         result: company,

@@ -28,6 +28,21 @@ img {
   max-width: 100%;
 }
 
+.toasted-container.bottom-center.toast-container-custom {
+  align-items: center !important;
+  bottom: 2rem !important;
+}
+
+.toast-custom {
+  width: 200px !important;
+  font-size: 13px !important;
+  background: rgba(53, 53, 53, 0.7) !important;
+  justify-content: center !important;
+
+
+}
+
+
 .avatar {
   width: 2.8rem;
   height: 2.8rem;

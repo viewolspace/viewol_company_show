@@ -62,7 +62,9 @@
         {{ detail.vDes }}
       </div>
       <div class="actions">
-        <button>投票</button>
+        <button @click="vote()">
+          投票
+        </button>
         <button>为我拉票</button>
       </div>
     </div>
@@ -72,9 +74,11 @@
 <script>
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import * as ProductAPI from '@/api/product'
+import { State } from 'vuex-class'
 
 export default @Component({})
 class VoteProduct extends Vue {
+  @State('open_id') openId
   @Prop({ required: true }) id
 
   detail = {}
@@ -91,6 +95,12 @@ class VoteProduct extends Vue {
     const { result } = await ProductAPI.getIdeaDetail(this.id)
     console.log(result)
     this.detail = result
+  }
+
+  async vote () {
+    const { message } = await ProductAPI.vote(this.id, this.openId)
+    this.$toasted.show(message)
+    await this.getProductDetail()
   }
 }
 </script>

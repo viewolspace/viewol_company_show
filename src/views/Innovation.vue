@@ -69,10 +69,24 @@
 
 <script>
 import { Component, Vue } from 'vue-property-decorator'
+import { Action, State } from 'vuex-class'
 
 export default @Component({})
 class Innovation extends Vue {
+  @State('open_id') openId
+  @Action('setOpenId') setOpenId
 
+  mounted () {
+    const urlParams = new URLSearchParams(window.location.search)
+    if (urlParams.has('code')) {
+      this.setOpenId(urlParams.get('code'))
+    } else if (!this.openId) {
+      const url = window.location.href
+      const wechatAuth = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7a9dfdd0e5f4c671&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect'
+      console.log(wechatAuth)
+      window.location.href = wechatAuth
+    }
+  }
 }
 </script>
 
