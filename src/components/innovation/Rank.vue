@@ -77,107 +77,126 @@
           alt=""
         >
         <input
+          v-model="keywords"
           type="text"
           placeholder="请输入产品编号 名称"
         >
-        <a>搜索</a>
-      </div>
-      <div class="more">
-        <a>查看介绍</a>
-        <a>查看排行</a>
+        <a @click="toVotePage({keywords})">搜索</a>
       </div>
     </div>
     <div class="category-container">
-      <div class="item active">
+      <div
+        class="item"
+        @click="toVotePage({category:''})"
+      >
         全部
       </div>
-      <div class="item">
-        智慧消防
-      </div>
-      <div class="item">
-        灭火系统和消防器具
-      </div>
-      <div class="item">
-        应急救援装备及职业健康
-      </div>
-      <div class="item">
-        火灾防护及逃生自救
-      </div>
-      <div class="item">
-        消防科研及火灾事故
+      <div
+        v-for="item in categoryList"
+        :key="item"
+        class="item"
+        @click="toVotePage({category:item})"
+      >
+        {{ item }}
       </div>
     </div>
     <div class="rank-list-container">
       <div class="title">
         排行榜
       </div>
-      <div class="rank-list-top">
-        <div class="item">
+      <div
+        v-if="topProducts.length"
+        class="rank-list-top"
+      >
+        <div
+          v-for="(item,index) in topProducts"
+          :key="item.productId"
+          class="item"
+        >
           <img
+            v-if="index===0"
             class="rank-logo"
             src="@/images/innovation/rank_1.png"
             alt=""
           >
+          <img
+            v-if="index===1"
+            class="rank-logo"
+            src="@/images/innovation/rank_2.png"
+            alt=""
+          >
+          <img
+            v-if="index===2"
+            class="rank-logo"
+            src="@/images/innovation/rank_3.png"
+            alt=""
+          >
           <div>
             <div class="id">
-              ID 12345
+              ID {{ item.productId }}
             </div>
             <div class="name">
-              80米举高喷射消防车
+              {{ item.productName }}
             </div>
             <div class="company">
-              广州市昕恒泵业制造有限公司
+              {{ item.company }}
             </div>
             <div class="sum">
-              68976 票
+              {{ item.vNum }} 票
             </div>
           </div>
         </div>
       </div>
-      <div class="rank-list-bottom">
-        <div class="item">
+      <div
+        v-if="bottomProducts.length"
+        class="rank-list-bottom"
+      >
+        <div
+          v-for="(item, index) in bottomProducts"
+          :key="item.productId"
+          class="item"
+        >
           <div class="rank-no">
-            4
+            {{ index + 4 }}
           </div>
           <div class="detail">
             <img
               class="logo"
-              src=""
+              :src="item.productPic"
               alt=""
             >
             <div class="information">
               <div class="id">
-                ID 1234
+                ID {{ item.productId }}
               </div>
               <div class="name">
-                智慧消防城市火灾风险防控及应急救援云平台,理工光科定制
+                {{ item.productName }}
               </div>
             </div>
             <div class="sum">
-              68976 票
+              {{ item.vNum }} 票
             </div>
           </div>
         </div>
       </div>
     </div>
-    <search-result-list :products="products" />
   </div>
 </template>
 
 <script>
 import { Component, Vue } from 'vue-property-decorator'
 import moment from 'moment'
-import SearchResultList from './SearchResultList.vue'
 import * as ProductAPI from '@/api/product'
 
-export default @Component({
-  components: { SearchResultList }
-})
+export default @Component({})
 class Rank extends Vue {
-  categoryId = ''
   now = moment()
   startTime = '2021-06-15 00:00:00'
   endTime = '2021-07-10 23:59:59'
+  keywords = ''
+  categoryList = [
+    '智慧消防', '灭火系统和消防器具', '应急救援装备及职业健康', '火灾防护及逃生自救', '消防科研及火灾事故'
+  ]
 
   summary = {
     pro: 0,
@@ -186,6 +205,14 @@ class Rank extends Vue {
   }
 
   products = []
+
+  get topProducts () {
+    return this.products.slice(0, 3)
+  }
+
+  get bottomProducts () {
+    return this.products.slice(3)
+  }
 
   get countdown () {
     const now = this.now
@@ -221,12 +248,16 @@ class Rank extends Vue {
   }
 
   async getIdeaProductList () {
-    const { result } = await ProductAPI.getIdeaList({ pageIndex: 1, categoryId: this.categoryId })
+    const { result } = await ProductAPI.getIdeaList({ pageIndex: 1, num: 99 })
     this.products = result
   }
 
   startCountDown () {
     setInterval(() => { this.now = moment() }, 1000)
+  }
+
+  toVotePage (query) {
+    this.$router.push({ name: 'innovation_vote', query })
   }
 }
 </script>
@@ -383,6 +414,7 @@ class Rank extends Vue {
   }
 
   .category-container {
+    margin-top: 0.5rem;
     background: #0251B6;
     border: 1px solid #A0C9FD;
     width: 100%;
@@ -447,6 +479,10 @@ class Rank extends Vue {
         background: #0259C7;
         border: 1px solid #A0C9FD;
         border-radius: 4rem;
+
+        &:not(:first-child) {
+          margin-top: 1rem;
+        }
 
         .rank-logo {
           height: 100%;

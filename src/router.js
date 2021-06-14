@@ -11,6 +11,7 @@ import CheckIn from './views/CheckIn.vue'
 import Innovation from './views/Innovation.vue'
 import InnovationIntroduce from '@/components/innovation/Introduce.vue'
 import InnovationVote from '@/components/innovation/Vote.vue'
+import InnovationVoteProduct from '@/components/innovation/VoteProduct'
 import InnovationRank from '@/components/innovation/Rank.vue'
 import InnovationSearch from '@/components/innovation/Search.vue'
 import InnovationCanvassing from '@/components/innovation/Canvassing.vue'
@@ -54,7 +55,12 @@ export default new Router({
         },
         component: InnovationVote
       }, {
-        path: '/innovation/Rank',
+        path: '/innovation/vote/:id',
+        name: 'innovation_vote_product',
+        component: InnovationVoteProduct,
+        props: true
+      }, {
+        path: '/innovation/rank',
         name: 'innovation_rank',
         meta: {
           tab: 'rank'
