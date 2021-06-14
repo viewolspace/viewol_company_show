@@ -156,7 +156,7 @@
           <div class="detail">
             <img
               class="logo"
-              :src="item.productPic"
+              :src="item.v_logo"
               alt=""
             >
             <div class="information">

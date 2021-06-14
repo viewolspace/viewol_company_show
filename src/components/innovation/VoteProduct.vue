@@ -31,7 +31,7 @@
     <div class="production-container">
       <img
         class="logo"
-        :src="detail.productPic"
+        :src="detail.v_logo"
         alt=""
       >
       <div class="information">
