@@ -66,7 +66,7 @@
           class="icon"
         >
         <div class="desc">
-          投票结束倒计时：<span class="remain">15天12时30分30秒</span>
+          投票结束倒计时：<span class="remain">{{ countdown }}</span>
         </div>
       </div>
     </div>
