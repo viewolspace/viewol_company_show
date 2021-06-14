@@ -5,10 +5,12 @@
  * copyright 2014-2019, gandxiaowei@gmail.com all rights reserved.
  */
 
-import { interceptors } from 'axios'
+import axios from 'axios'
 
 export default () => {
-  interceptors.response.use(response => {
+  axios.defaults.baseURL = process.env.VUE_APP_API_BASE_URL
+
+  axios.interceptors.response.use(response => {
     const { data } = response
     if (data) {
       switch (data.code || data.status) {

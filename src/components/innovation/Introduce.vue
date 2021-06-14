@@ -1,15 +1,9 @@
 <template>
   <div class="introduce-container">
-    <div class="nav">
-      <img
-        src="@/images/innovation/nav.png"
-        alt=""
-      >
-    </div>
     <div class="count">
       <div class="item">
         <div class="number">
-          636333
+          {{ summary.vote }}
         </div>
         <div class="desc">
           总票数
@@ -18,7 +12,7 @@
       <div class="divide" />
       <div class="item">
         <div class="number">
-          231
+          {{ summary.pro }}
         </div>
         <div class="desc">
           产品数
@@ -27,7 +21,7 @@
       <div class="divide" />
       <div class="item">
         <div class="number">
-          636333
+          {{ summary.join }}
         </div>
         <div class="desc">
           访问量
@@ -42,7 +36,7 @@
           class="icon"
         >
         <div class="desc">
-          投票开始：2021-06-15 00:00:00
+          投票开始：{{ startTime }}
         </div>
       </div>
       <div class="item">
@@ -52,7 +46,7 @@
           class="icon"
         >
         <div class="desc">
-          投票截止：2021-07-10 23:59:59
+          投票截止：{{ endTime }}
         </div>
       </div>
       <div class="item">
@@ -238,10 +232,56 @@
 
 <script>
 import { Component, Vue } from 'vue-property-decorator'
+import * as ProductAPI from '@/api/product'
+import moment from 'moment'
 
 export default @Component({})
 class Introduce extends Vue {
+  now = moment()
+  startTime = '2021-06-15 00:00:00'
+  endTime = '2021-07-10 23:59:59'
 
+  summary = {
+    pro: 0,
+    vote: 0,
+    join: 0
+  }
+
+  get countdown () {
+    const now = this.now
+    const start = moment(this.startTime)
+    const end = moment(this.endTime)
+    if (this.now.isBefore(start)) {
+      return '投票还未开始'
+    }
+
+    if (this.now.isAfter(end)) {
+      return '投票已经结束'
+    }
+    const remain = end.diff(now, 'seconds') // 1
+    const days = remain / 3600 / 24
+    const day = Math.floor(days)
+    const hours = (days - day) * 24
+    const hour = Math.floor(hours)
+    const minutes = (hours - hour) * 60
+    const minute = Math.floor(minutes)
+    const seconds = (minutes - minute) * 60
+    const second = Math.floor(seconds)
+    return day + '天' + _.padStart(String(hour), '0') + '小时' + _.padStart(String(minute), '0') + '分钟' + _.padStart(String(second), '0') + '秒'
+  }
+
+  mounted () {
+    this.getProductSummary()
+    this.startCountDown()
+  }
+
+  async getProductSummary () {
+    this.summary = await ProductAPI.getSummary()
+  }
+
+  startCountDown () {
+    setInterval(() => { this.now = moment() }, 1000)
+  }
 }
 </script>
 
@@ -251,11 +291,6 @@ class Introduce extends Vue {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  .nav {
-    border: 1px solid #A0C9FD;
-    padding: 1.23rem 1.7rem 2.56rem;
-  }
 
   .count {
     margin-top: 0.5rem;

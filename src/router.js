@@ -67,13 +67,14 @@ export default new Router({
           tab: 'search'
         },
         component: InnovationSearch
+      },
+      {
+        path: '/innovation/canvassing',
+        name: 'innovation_canvassing',
+        component: InnovationCanvassing
       }]
     },
-    {
-      path: '/innovation/canvassing',
-      name: 'innovation_canvassing',
-      component: InnovationCanvassing
-    },
+
     {
       path: '/invitation',
       name: 'invitation',

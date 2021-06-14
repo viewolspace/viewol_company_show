@@ -1,15 +1,9 @@
 <template>
   <div class="rank-container">
-    <div class="nav">
-      <img
-        src="@/images/innovation/nav.png"
-        alt=""
-      >
-    </div>
     <div class="count">
       <div class="item">
         <div class="number">
-          636333
+          {{ summary.vote }}
         </div>
         <div class="desc">
           总票数
@@ -18,7 +12,7 @@
       <div class="divide" />
       <div class="item">
         <div class="number">
-          231
+          {{ summary.pro }}
         </div>
         <div class="desc">
           产品数
@@ -27,7 +21,7 @@
       <div class="divide" />
       <div class="item">
         <div class="number">
-          636333
+          {{ summary.join }}
         </div>
         <div class="desc">
           访问量
@@ -52,7 +46,7 @@
           class="icon"
         >
         <div class="desc">
-          投票截止：2021-07-10 23:59:59
+          投票截止：{{ endTime }}
         </div>
       </div>
       <div class="item">
@@ -72,7 +66,7 @@
           class="icon"
         >
         <div class="desc">
-          投票结束倒计时：<span class="remain">15天12时30分30秒</span>
+          投票结束倒计时：<span class="highlight">{{ countdown }}</span>
         </div>
       </div>
     </div>
@@ -166,19 +160,74 @@
         </div>
       </div>
     </div>
-    <search-result-list />
+    <search-result-list :products="products" />
   </div>
 </template>
 
 <script>
 import { Component, Vue } from 'vue-property-decorator'
+import moment from 'moment'
 import SearchResultList from './SearchResultList.vue'
+import * as ProductAPI from '@/api/product'
 
 export default @Component({
   components: { SearchResultList }
 })
 class Rank extends Vue {
+  categoryId = ''
+  now = moment()
+  startTime = '2021-06-15 00:00:00'
+  endTime = '2021-07-10 23:59:59'
 
+  summary = {
+    pro: 0,
+    vote: 0,
+    join: 0
+  }
+
+  products = []
+
+  get countdown () {
+    const now = this.now
+    const start = moment(this.startTime)
+    const end = moment(this.endTime)
+    if (this.now.isBefore(start)) {
+      return '投票还未开始'
+    }
+
+    if (this.now.isAfter(end)) {
+      return '投票已经结束'
+    }
+    const remain = end.diff(now, 'seconds') // 1
+    const days = remain / 3600 / 24
+    const day = Math.floor(days)
+    const hours = (days - day) * 24
+    const hour = Math.floor(hours)
+    const minutes = (hours - hour) * 60
+    const minute = Math.floor(minutes)
+    const seconds = (minutes - minute) * 60
+    const second = Math.floor(seconds)
+    return day + '天' + _.padStart(String(hour), '0') + '小时' + _.padStart(String(minute), '0') + '分钟' + _.padStart(String(second), '0') + '秒'
+  }
+
+  mounted () {
+    this.getProductSummary()
+    this.getIdeaProductList()
+    this.startCountDown()
+  }
+
+  async getProductSummary () {
+    this.summary = await ProductAPI.getSummary()
+  }
+
+  async getIdeaProductList () {
+    const { result } = await ProductAPI.getIdeaList({ pageIndex: 1, categoryId: this.categoryId })
+    this.products = result
+  }
+
+  startCountDown () {
+    setInterval(() => { this.now = moment() }, 1000)
+  }
 }
 </script>
 
@@ -187,11 +236,6 @@ class Rank extends Vue {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  .nav {
-    border: 1px solid #A0C9FD;
-    padding: 1.23rem 1.7rem 2.56rem;
-  }
 
   .count {
     margin-top: 0.5rem;
@@ -266,7 +310,7 @@ class Rank extends Vue {
         font-weight: 400;
         color: #FFFFFF;
 
-        .remain {
+        .highlight {
           color: #FFE204;
         }
       }
@@ -463,7 +507,6 @@ class Rank extends Vue {
 
         .rank-no {
           font-size: 0.87rem;
-          font-family: SourceHanSansCN;
           font-weight: 500;
           color: #FFE204;
           margin-right: 0.95rem;

@@ -1,8 +1,20 @@
 <template>
   <div class="innovation-container">
+    <div class="nav">
+      <img
+        src="@/images/innovation/nav.png"
+        alt=""
+      >
+    </div>
     <router-view class="content-container" />
-    <div class="bar">
-      <div class="item">
+    <div
+      v-if="$route.meta.tab"
+      class="bar"
+    >
+      <router-link
+        :to="{name:'innovation_introduce'}"
+        class="item"
+      >
         <img
           class="icon"
           src="@/images/innovation/icon_introduce.png"
@@ -11,8 +23,11 @@
         <div class="name">
           介绍
         </div>
-      </div>
-      <div class="item">
+      </router-link>
+      <router-link
+        :to="{name:'innovation_vote'}"
+        class="item"
+      >
         <img
           class="icon"
           src="@/images/innovation/icon_vote.png"
@@ -21,8 +36,11 @@
         <div class="name">
           投票
         </div>
-      </div>
-      <div class="item">
+      </router-link>
+      <router-link
+        :to="{name:'innovation_rank'}"
+        class="item"
+      >
         <img
           class="icon"
           src="@/images/innovation/icon_rank.png"
@@ -31,8 +49,11 @@
         <div class="name">
           排行
         </div>
-      </div>
-      <div class="item">
+      </router-link>
+      <router-link
+        class="item"
+        :to="{name:'innovation_search'}"
+      >
         <img
           class="icon"
           src="@/images/innovation/icon_search.png"
@@ -41,7 +62,7 @@
         <div class="name">
           搜索
         </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -61,9 +82,14 @@ class Innovation extends Vue {
   background-size: 100%;
   min-height: 100vh;
   padding: 0.9rem 0.7rem;
+
+  .nav {
+    border: 1px solid #A0C9FD;
+    padding: 1.23rem 1.7rem 2.56rem;
+  }
 }
 
-.content-container{
+.content-container {
   margin-bottom: 3rem;
 }
 
@@ -77,12 +103,17 @@ class Innovation extends Vue {
   align-items: center;
   height: 3.48rem;
   background: #0259C7;
+  z-index: 999;
 
   .item {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    appearance: none;
+    height: 100%;
 
     .icon {
       height: 1.64rem;

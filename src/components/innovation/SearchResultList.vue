@@ -1,61 +1,23 @@
 <template>
   <div class="search-result-container">
-    <div class="item">
+    <div
+      v-for="item in products"
+      :key="item.productId"
+      class="item"
+    >
       <div class="id">
-        ID 12345
+        ID {{ item.productId }}
       </div>
       <img
         class="image"
-        src=""
+        :src="item.productPic"
         alt=""
       >
       <div class="sum">
         3333票
       </div>
       <div class="desc">
-        智慧消防城市火灾风险防控及应急救援云平台，理工光科定制
-      </div>
-      <div>
-        <button class="vote">
-          投票
-        </button>
-      </div>
-    </div>
-    <div class="item">
-      <div class="id">
-        ID 12345
-      </div>
-      <img
-        class="image"
-        src=""
-        alt=""
-      >
-      <div class="sum">
-        3333票
-      </div>
-      <div class="desc">
-        智慧消防城市火灾风险防控及应急救援云平台，理工光科定制
-      </div>
-      <div>
-        <button class="vote">
-          投票
-        </button>
-      </div>
-    </div>
-    <div class="item">
-      <div class="id">
-        ID 12345
-      </div>
-      <img
-        class="image"
-        src=""
-        alt=""
-      >
-      <div class="sum">
-        3333票
-      </div>
-      <div class="desc">
-        智慧消防城市火灾风险防控及应急救援云平台，理工光科定制
+        {{ item.productName }}
       </div>
       <div>
         <button class="vote">
@@ -67,11 +29,11 @@
 </template>
 
 <script>
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 
 export default @Component({})
 class SearchResultList extends Vue {
-
+  @Prop({ default: () => [] }) products
 }
 </script>
 
@@ -80,6 +42,7 @@ class SearchResultList extends Vue {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
   .item {
     margin-top: 0.5rem;
     display: flex;
@@ -114,6 +77,7 @@ class SearchResultList extends Vue {
       border: 1px solid #0251B6;
       border-radius: 1rem;
       overflow: hidden;
+      object-fit: cover;
     }
 
     .sum {
@@ -129,6 +93,7 @@ class SearchResultList extends Vue {
       width: 9.06rem;
       height: 4rem;
       color: #01377C;
+      text-align: center;
     }
 
     .vote {

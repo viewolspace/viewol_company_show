@@ -1,9 +1,9 @@
 module.exports = {
   presets: [
-    '@vue/app'
+    '@vue/cli-plugin-babel/preset'
   ],
   plugins: [
-    ['@babel/plugin-proposal-decorators', {'legacy': true}],
-    ['@babel/plugin-proposal-class-properties', {'loose': true}]
+    '@babel/plugin-proposal-optional-chaining',
+    '@babel/plugin-transform-modules-commonjs'
   ]
 }

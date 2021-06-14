@@ -38,6 +38,7 @@ export default class App extends Vue {
       case 'innovation_rank':
       case 'innovation_vote':
       case 'innovation_search':
+      case 'innovation_canvassing':
         break
       default:
         await this.processMain()
@@ -47,6 +48,9 @@ export default class App extends Vue {
 
   async processMain () {
     const { company_id, user_id, expo_id = 2 } = this.$route.query
+    if (!company_id) {
+      return
+    }
     this.setBasicInfo({
       company_id, user_id, expo_id
     })

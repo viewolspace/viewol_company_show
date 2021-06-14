@@ -7,7 +7,6 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    base_url: 'https://www.view-ol.com/viewol_web',
     user_id: -1,
     company_id: -1,
     expo_id: 2,
@@ -28,7 +27,7 @@ export default new Vuex.Store({
         praise,
         see,
         showInfo
-      } = await axios.get(`${state.base_url}/company/getCompany`, {
+      } = await axios.get('/company/getCompany', {
         params: {
           id: state.company_id,
           userId: state.user_id
@@ -40,7 +39,7 @@ export default new Vuex.Store({
     },
 
     async getProductList ({ commit, state }) {
-      const { result } = await axios.get(`${state.base_url}/product/listProduct`, {
+      const { result } = await axios.get('/product/listProduct', {
         params: {
           expoId: state.expo_id,
           companyId: state.company_id,
@@ -51,7 +50,7 @@ export default new Vuex.Store({
     },
 
     async praiseCompany ({ state, dispatch }) {
-      const { status } = await axios.post(`${state.base_url}/company/praise`, qs.stringify({
+      const { status } = await axios.post('/company/praise', qs.stringify({
         userId: state.user_id,
         comId: state.company_id
       }), {
@@ -63,7 +62,7 @@ export default new Vuex.Store({
     },
 
     async commentCompany ({ state, dispatch }, comment) {
-      const { status } = await axios.post(`${state.base_url}/company/comment`, qs.stringify({
+      const { status } = await axios.post('/company/comment', qs.stringify({
         userId: state.user_id,
         comId: state.company_id,
         content: comment
@@ -76,7 +75,7 @@ export default new Vuex.Store({
     },
 
     async getActivityDetail ({ commit, state }, id) {
-      const { result } = await axios.get(`${state.base_url}/schedule/getSchedule`, {
+      const { result } = await axios.get('/schedule/getSchedule', {
         params: {
           userId: state.user_id,
           id
@@ -87,7 +86,7 @@ export default new Vuex.Store({
     },
 
     async getCompanyAndQr ({ commit, state }, id) {
-      const { qr, result } = await axios.get(`${state.base_url}/company/getCompanyAndQr`, {
+      const { qr, result } = await axios.get('/company/getCompanyAndQr', {
         params: {
           maNum: 3,
           id,
@@ -101,7 +100,7 @@ export default new Vuex.Store({
     },
 
     async signUp ({ state }, params) {
-      const result = await axios.post(`${state.base_url}/buser/userJoinBbs`, qs.stringify({
+      const result = await axios.post('/buser/userJoinBbs', qs.stringify({
         name: params.name,
         sex: params.sex,
         company: params.company,
@@ -121,7 +120,7 @@ export default new Vuex.Store({
     },
 
     async checkIn ({ state }, params) {
-      return await axios.post(`${state.base_url}/buser/userSignBbs`, qs.stringify({
+      return await axios.post('/buser/userSignBbs', qs.stringify({
         phone: params.phone,
         bbsId: params.bbsId
       }), {

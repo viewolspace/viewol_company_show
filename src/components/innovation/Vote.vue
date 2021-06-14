@@ -1,11 +1,5 @@
 <template>
   <div class="vote-container">
-    <div class="nav">
-      <img
-        src="@/images/innovation/nav.png"
-        alt=""
-      >
-    </div>
     <div class="count">
       <div class="item">
         <div class="number">
@@ -37,31 +31,33 @@
     <div class="production-container">
       <img
         class="logo"
-        src=""
+        :src="detail.productPic"
         alt=""
       >
       <div class="information">
         <div>
-          产品ID：<span class="highlight">9048</span>
+          产品ID：<span class="highlight">{{ detail.productId }}</span>
         </div>
-        <div>产品名称：城市级消防物联网平台</div>
+        <div>产品名称：{{ detail.productName }}</div>
         <div>型号： zhilusaas 1.0</div>
-        <div>参选：智慧消防技术产品</div>
+        <div>参选：{{ detail.categoryId }}</div>
         <div>
-          企业名称：深圳知路科技有限公司
+          企业名称：{{ detail.companyName }}
         </div>
       </div>
     </div>
     <div class="image-container">
       <img
-        src=""
+        v-for="item in productImages"
+        :key="item"
+        :src="item"
         alt=""
         class="production-image"
       >
     </div>
     <div class="action-container">
       <div>
-        以应用支撑平台为中心，建设消防监管部门/消防救援机构的城市级综合管理平台，下辖五个子平台为联网单位、维保单位、设备制造商、保险机构和社会公众提供相关业务数据应用服务。
+        {{ detail.vDes }}
       </div>
       <div class="actions">
         <button>投票</button>
@@ -73,10 +69,25 @@
 
 <script>
 import { Component, Vue } from 'vue-property-decorator'
+import * as ProductAPI from '@/api/product'
 
 export default @Component({})
 class Vote extends Vue {
+  detail = {}
 
+  get productImages () {
+    return _.compact(this.detail.vPic?.split(',') || [])
+  }
+
+  mounted () {
+    this.getProductDetail()
+  }
+
+  async getProductDetail () {
+    const { result } = await ProductAPI.getIdeaDetail(8799)
+    console.log(result)
+    this.detail = result
+  }
 }
 </script>
 
@@ -85,11 +96,6 @@ class Vote extends Vue {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  .nav {
-    border: 1px solid #A0C9FD;
-    padding: 1.23rem 1.7rem 2.56rem;
-  }
 
   .count {
     margin-top: 0.5rem;
