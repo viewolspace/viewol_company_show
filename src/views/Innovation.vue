@@ -93,7 +93,7 @@ class Innovation extends Vue {
 <style lang="scss" scoped>
 .innovation-container {
   background: url("../images/background.png") repeat-y;
-  background-size: 100%;
+  background-size: 100% 100%;
   min-height: 100vh;
   padding: 0.9rem 0.7rem;
 
