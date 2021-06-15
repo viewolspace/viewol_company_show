@@ -100,25 +100,6 @@
       </div>
       <div class="content">
         <div>
-          <div class="start">
-            网络投票结果将作为本届创新产品评选的重要参考项
-          </div>
-          <div class="start">
-            网络投票结果前十名的产品（企业）
-          </div>
-          <div>作为参加下届展会展位优先协调的参考依据</div>
-          <div> 作为消防企业信用等级评价的重要依据</div>
-          <div> 作为中国消防协会团体标准的重要参考内容</div>
-          <div> 作为中国消防协会科学技术创新奖评选的重要推荐</div>
-        </div>
-      </div>
-    </div>
-    <div class="desc-container">
-      <div class="title">
-        评选规则
-      </div>
-      <div class="content">
-        <div>
           <div class="star-container">
             <img
               src="@/images/innovation/icon_star.png"
@@ -149,7 +130,7 @@
     </div>
     <div class="desc-container">
       <div class="title">
-        评选规则
+        活动流程
       </div>
       <div class="content">
         <div>
@@ -362,6 +343,7 @@ class Introduce extends Vue {
       .desc {
         margin-left: 0.75rem;
         font-size: 12px;
+        white-space: nowrap;
         font-weight: 400;
         color: #FFFFFF;
 

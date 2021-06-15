@@ -352,6 +352,7 @@ class Vote extends Vue {
       .desc {
         margin-left: 0.75rem;
         font-size: 12px;
+        white-space: nowrap;
         font-weight: 400;
         color: #FFFFFF;
 
@@ -441,6 +442,7 @@ class Vote extends Vue {
     .item {
       margin-top: .5rem;
       width: 9.03rem;
+      max-width: 49%;
       height: 1.64rem;
       line-height: 1.64rem;
       text-align: center;

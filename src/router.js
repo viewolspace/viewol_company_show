@@ -57,6 +57,9 @@ export default new Router({
       }, {
         path: '/innovation/vote/:id',
         name: 'innovation_vote_product',
+        meta: {
+          tab: 'vote_product'
+        },
         component: InnovationVoteProduct,
         props: true
       }, {

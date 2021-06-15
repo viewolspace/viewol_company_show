@@ -122,15 +122,15 @@ class VoteProduct extends Vue {
   setShareMessage () {
     const { detail } = this
     wxApi.shareTimeline({
-      title: detail.companyName + '邀请您莅临参观2021年中国国际消防设备技术交流展', // 分享标题
+      title: detail.companyName + '邀请您在线投票-创新产品', // 分享标题
       link: window.location.href, // 分享链接
-      imgUrl: 'http://www.view-ol.com/logo.png' // 分享图标
+      imgUrl: 'https://www.view-ol.com/2021logo.jpg' // 分享图标
     })
     wxApi.shareAppMessage({
-      title: detail.companyName + '邀请您莅临参观2021年中国国际消防设备技术交流展', // 分享标题
-      desc: detail.content, // 分享描述
+      title: detail.companyName + '邀请您在线投票-创新产品', // 分享标题
+      desc: detail.companyName + '邀请您在线投票-创新产品', // 分享描述
       link: window.location.href, // 分享链接
-      imgUrl: 'http://www.view-ol.com/logo.png' // 分享图标
+      imgUrl: 'https://www.view-ol.com/2021logo.jpg' // 分享图标
     })
   }
 }

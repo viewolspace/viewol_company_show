@@ -350,6 +350,7 @@ class Rank extends Vue {
       .desc {
         margin-left: 0.75rem;
         font-size: 12px;
+        white-space: nowrap;
         font-weight: 400;
         color: #FFFFFF;
 
@@ -438,6 +439,7 @@ class Rank extends Vue {
     .item {
       margin-top: .5rem;
       width: 9.03rem;
+      max-width: 49%;
       height: 1.64rem;
       line-height: 1.64rem;
       text-align: center;
@@ -487,7 +489,7 @@ class Rank extends Vue {
       .item {
         display: flex;
         align-items: center;
-        width: 19.73rem;
+        width: 100%;
         height: 7.28rem;
         background: #0259C7;
         border: 1px solid #A0C9FD;
