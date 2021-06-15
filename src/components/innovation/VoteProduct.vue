@@ -127,7 +127,7 @@ class VoteProduct extends Vue {
       imgUrl: 'https://www.view-ol.com/2021logo.jpg' // 分享图标
     })
     wxApi.shareAppMessage({
-      title: detail.companyName + '邀请您在线投票-创新产品', // 分享标题
+      title: '2021年第十九届中国国际消防创新产品评选活动-在线投票', // 分享标题
       desc: detail.companyName + '邀请您在线投票-创新产品', // 分享描述
       link: window.location.href, // 分享链接
       imgUrl: 'https://www.view-ol.com/2021logo.jpg' // 分享图标
