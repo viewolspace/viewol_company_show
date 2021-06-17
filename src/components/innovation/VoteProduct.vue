@@ -102,34 +102,36 @@ class VoteProduct extends Vue {
   }
 
   mounted () {
-    this.getProductDetail()
+    this.getProductDetail(true)
   }
 
-  async getProductDetail () {
+  async getProductDetail (registerShare) {
     const { result } = await ProductAPI.getIdeaDetail(this.id)
     this.detail = result
-    await wxApi.register(() => {
-      this.setShareMessage()
-    })
+    if (registerShare) {
+      await wxApi.register(() => {
+        this.setShareMessage()
+      })
+    }
   }
 
   async vote () {
     const { message } = await ProductAPI.vote(this.id, this.openId)
     this.$toasted.show(message)
-    await this.getProductDetail()
+    await this.getProductDetail(false)
   }
 
   setShareMessage () {
     const { detail } = this
     wxApi.shareTimeline({
       title: detail.companyName + '邀请您在线投票-创新产品', // 分享标题
-      link: window.location.href, // 分享链接
+      link: window.location.href.replace(window.location.search, ''), // 分享链接
       imgUrl: 'https://www.view-ol.com/2021logo.jpg' // 分享图标
     })
     wxApi.shareAppMessage({
       title: '2021年第十九届中国国际消防创新产品评选活动-在线投票', // 分享标题
       desc: detail.companyName + '邀请您在线投票-创新产品', // 分享描述
-      link: window.location.href, // 分享链接
+      link: window.location.href.replace(window.location.search, ''), // 分享链接
       imgUrl: 'https://www.view-ol.com/2021logo.jpg' // 分享图标
     })
   }
