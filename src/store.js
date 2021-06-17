@@ -25,6 +25,10 @@ export default new Vuex.Store({
       localStorage.setItem('wechat_open_id', openId)
       state.open_id = openId
     },
+    clearOpenId ({ state }) {
+      localStorage.removeItem('wechat_open_id')
+      state.open_id = null
+    },
     async getCompanyInformation ({ commit, state }) {
       const {
         result: company,

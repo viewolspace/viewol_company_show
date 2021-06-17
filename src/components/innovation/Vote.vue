@@ -121,7 +121,7 @@
         </div>
         <img
           class="image"
-          :src="item.v_logo"
+          :src="item.vLogo"
           alt=""
         >
         <div class="sum">

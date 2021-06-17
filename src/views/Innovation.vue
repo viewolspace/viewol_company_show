@@ -70,22 +70,47 @@
 <script>
 import { Component, Vue } from 'vue-property-decorator'
 import { Action, State } from 'vuex-class'
+import { getOpenId } from '@/api/wechat'
 
 export default @Component({})
 class Innovation extends Vue {
   @State('open_id') openId
   @Action('setOpenId') setOpenId
+  @Action('clearOpenId') clearOpenId
 
   mounted () {
-    const urlParams = new URLSearchParams(window.location.search)
-    if (urlParams.has('code')) {
-      this.setOpenId(urlParams.get('code'))
-    } else if (!this.openId) {
-      const url = window.location.href
-      const wechatAuth = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7a9dfdd0e5f4c671&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect'
-      console.log(wechatAuth)
-      window.location.href = wechatAuth
+    this.requestOpenId()
+  }
+
+  async requestOpenId () {
+    try {
+      const urlParams = new URLSearchParams(window.location.search)
+      // 修复分享出去有bug的情况
+      if (urlParams.get('state') === 'STATE' && !localStorage.getItem('open_id_fix')) {
+        this.clearOpenId()
+        localStorage.setItem('open_id_fix', '1')
+      }
+
+      if (!this.openId) {
+        if (urlParams.has('code')) {
+          const { openid } = await getOpenId(urlParams.get('code'))
+          this.setOpenId(openid)
+        }
+
+        if (!this.openId) {
+          this.toAuth()
+        }
+      }
+    } catch (e) {
+      this.toAuth()
     }
+  }
+
+  toAuth () {
+    const url = window.location.href.replace(window.location.search, '')
+    const wechatAuth = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx7a9dfdd0e5f4c671&redirect_uri=' + encodeURIComponent(url) + '&response_type=code&scope=snsapi_userinfo&state=SETID#wechat_redirect'
+    console.log(wechatAuth)
+    window.location.href = wechatAuth
   }
 }
 </script>
