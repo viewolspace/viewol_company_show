@@ -3,11 +3,12 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import qs from 'qs'
 
+const WECHAT_OPEN_ID_KEY = 'wechat_open_id_fix'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    open_id: localStorage.getItem('wechat_open_id'),
+    open_id: localStorage.getItem(WECHAT_OPEN_ID_KEY),
     user_id: -1,
     company_id: -1,
     expo_id: 2,
@@ -22,11 +23,11 @@ export default new Vuex.Store({
   },
   actions: {
     setOpenId ({ state }, openId) {
-      localStorage.setItem('wechat_open_id', openId)
+      localStorage.setItem(WECHAT_OPEN_ID_KEY, openId)
       state.open_id = openId
     },
     clearOpenId ({ state }) {
-      localStorage.removeItem('wechat_open_id')
+      localStorage.removeItem(WECHAT_OPEN_ID_KEY)
       state.open_id = null
     },
     async getCompanyInformation ({ commit, state }) {
