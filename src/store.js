@@ -7,7 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    open_id: localStorage.getItem('openId'),
+    open_id: localStorage.getItem('wechat_open_id'),
     user_id: -1,
     company_id: -1,
     expo_id: 2,
@@ -22,7 +22,7 @@ export default new Vuex.Store({
   },
   actions: {
     setOpenId ({ state }, openId) {
-      localStorage.setItem('openId', openId)
+      localStorage.setItem('wechat_open_id', openId)
       state.open_id = openId
     },
     async getCompanyInformation ({ commit, state }) {
