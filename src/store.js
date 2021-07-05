@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import qs from 'qs'
 
-const WECHAT_OPEN_ID_KEY = 'wechat_open_id_fix'
+const WECHAT_OPEN_ID_KEY = 'wechat_open_id_new'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
