@@ -1,17 +1,17 @@
 <template>
   <div v-if="detail.id">
-    <gift-style
-      v-if="type==='1'"
-      :detail="detail"
-    />
-    <chinese-style
-      v-else-if="type==='2'"
-      :detail="detail"
-    />
-    <envelope-style
-      v-else-if="type==='3'"
-      :detail="detail"
-    />
+<!--    <gift-style-->
+<!--      v-if="type==='1'"-->
+<!--      :detail="detail"-->
+<!--    />-->
+<!--    <chinese-style-->
+<!--      v-else-if="type==='2'"-->
+<!--      :detail="detail"-->
+<!--    />-->
+<!--    <envelope-style-->
+<!--      v-else-if="type==='3'"-->
+<!--      :detail="detail"-->
+<!--    />-->
   </div>
 </template>
 
@@ -19,16 +19,9 @@
 import { Vue, Watch, Component, Prop } from 'vue-property-decorator'
 import { State } from 'vuex-class'
 import wxApi from '../helpers/share'
-import GiftStyle from '@/components/invitation/Gift'
-import ChineseStyle from '@/components/invitation/ChineseStyle'
-import EnvelopeStyle from '@/components/invitation/Envelope'
 
 @Component({
-  components: {
-    GiftStyle,
-    ChineseStyle,
-    EnvelopeStyle
-  }
+
 })
 export default class Invitation extends Vue {
   @State('invitation_detail') detail
