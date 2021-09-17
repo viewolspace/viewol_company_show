@@ -166,7 +166,7 @@ export default class Invitation extends Vue {
     }
 
     .place-tip {
-      margin-top: -.5rem;
+      margin-top: -.2rem;
       font-size: 0.56rem;
       color: #0251B6;
       width: 7.72rem;
