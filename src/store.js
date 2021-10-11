@@ -103,7 +103,6 @@ export default new Vuex.Store({
           width: 100
         }
       })
-      console.log(result)
       result.qr = `data:image/png;base64,${qr}`
       document.title = result.name
       commit('SET_INVITATION_DETAIL', result)
@@ -125,8 +124,7 @@ export default new Vuex.Store({
           'Content-Type': 'application/x-www-form-urlencoded'
         }
       })
-
-      console.log(result)
+      return result
     },
 
     async checkIn ({ state }, params) {

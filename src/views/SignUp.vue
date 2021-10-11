@@ -198,7 +198,7 @@ export default class SignUp extends Vue {
     if (!this.validateForm()) return
     try {
       await this.postSignUp(Object.assign({ bbsId: this.bbsId }, this.form))
-      this.$router.push({
+      await this.$router.push({
         name: 'message',
         query: { type: 'success_sign_up', bbsId: this.bbsId }
       })

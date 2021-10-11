@@ -12,7 +12,6 @@ const wxApi = {
   async register (callback) {
     // 这边的接口请换成你们自己的
     const { result: data } = await axios.get('https://www.view-ol.com/viewol_web/wx/jsapiSignature', { params: { url: window.location.href } })
-    console.log(data)
     const { wx } = window
     const config = {
       debug: false, // 开启调试模式

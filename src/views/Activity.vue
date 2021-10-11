@@ -114,13 +114,10 @@ export default class Activity extends Vue {
 
   @Watch('info')
   handleInfoChange () {
-    console.log(this.info.list)
     Vue.set(this, 'show', this.info.list.map(() => false))
-    console.log(this.show)
   }
 
   toggleShow (index) {
-    console.log(this.show[index])
     this.$set(this.show, index, !this.show[index])
   }
 
