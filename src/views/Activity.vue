@@ -5,7 +5,7 @@
   >
     <img
       class="nav"
-      src="@/images/nav.png"
+      :src="info.banner"
       alt=""
     >
     <div class="divide" />
@@ -31,14 +31,24 @@
         </div>
       </div>
       <div class="host">
-        主持人 {{ info.zcr }}
+        <div v-if="info.zcr">
+          主持人 {{ info.zcr }}
+        </div>
+        <div v-if="info.zydw">
+          展演单位 {{ info.zydw }}
+        </div>
       </div>
     </div>
     <div class="divide" />
     <div class="content">
       <div class="position">
         <div>地点 {{ info.dd }}</div>
-        <div>规模：{{ info.gm }}</div>
+        <div v-if="info.gm ">
+          规模：{{ info.gm }}
+        </div>
+        <div v-if="info.sj">
+          时间 {{ info.sj }}
+        </div>
       </div>
       <div class="list">
         <div
@@ -163,6 +173,7 @@ html {
   flex-direction: column;
   background: #98c3fb;
   padding-bottom: 4rem;
+  min-height: 100vh;
 
   img.nav {
     width: 100%;
