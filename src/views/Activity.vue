@@ -17,10 +17,18 @@
         智慧消防 引领未来
       </div>
       <div class="enterprise">
-        <div>主办 {{ info.companyName }}</div>
-        <div>承办 {{ info.cb }}</div>
-        <div>协办 {{ info.xb }}</div>
-        <div>特约支持 {{ info.tyzc }}</div>
+        <div v-if="info.companyName">
+          主办 {{ info.companyName }}
+        </div>
+        <div v-if="info.cb">
+          承办 {{ info.cb }}
+        </div>
+        <div v-if="info.xb">
+          协办 {{ info.xb }}
+        </div>
+        <div v-if="info.tyzc">
+          特约支持 {{ info.tyzc }}
+        </div>
       </div>
       <div class="host">
         主持人 {{ info.zcr }}
