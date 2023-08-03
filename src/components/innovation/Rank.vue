@@ -36,7 +36,7 @@
           class="icon"
         >
         <div class="desc">
-          投票开始：2021-06-15 00:00:00
+          投票开始：2023-06-15 00:00:00
         </div>
       </div>
       <div class="item">
@@ -197,8 +197,8 @@ import * as ProductAPI from '@/api/product'
 export default @Component({})
 class Rank extends Vue {
   now = moment()
-  startTime = '2021-06-15 00:00:00'
-  endTime = '2021-07-10 23:59:59'
+  startTime = '2023-06-15 00:00:00'
+  endTime = '2023-07-10 23:59:59'
   keywords = ''
   more = false
   categoryList = {

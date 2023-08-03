@@ -29,7 +29,7 @@
     <div class="bottom">
       <div class="basic">
         <div class="name">
-          2021中国国际消防设备技术交流展览会
+          2023中国国际消防设备技术交流展览会
         </div>
         <div class="info">
           <div class="item">
@@ -38,7 +38,7 @@
           </div>
           <div class="item">
             <div>时间</div>
-            <div>2021年10月12-15日</div>
+            <div>2023年10月10-13日</div>
           </div>
           <div class="item">
             <div>地点</div>
@@ -96,12 +96,12 @@ export default class Invitation extends Vue {
   setShareMessage () {
     const { detail } = this
     wxApi.shareTimeline({
-      title: detail.name + '邀请您莅临参观2021年中国国际消防设备技术交流展', // 分享标题
+      title: detail.name + '邀请您莅临参观2023年中国国际消防设备技术交流展', // 分享标题
       link: window.location.href, // 分享链接
       imgUrl: 'http://www.view-ol.com/logo.png' // 分享图标
     })
     wxApi.shareAppMessage({
-      title: detail.name + '邀请您莅临参观2021年中国国际消防设备技术交流展', // 分享标题
+      title: detail.name + '邀请您莅临参观2023年中国国际消防设备技术交流展', // 分享标题
       desc: detail.content, // 分享描述
       link: window.location.href, // 分享链接
       imgUrl: 'http://www.view-ol.com/logo.png' // 分享图标

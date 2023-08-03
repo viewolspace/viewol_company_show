@@ -38,7 +38,7 @@
       alt=""
     >
     <div class="time">
-      2021年10月13-15日
+      2023年10月10-13日
     </div>
     <div class="location">
       中国国际展览中心（新馆）
