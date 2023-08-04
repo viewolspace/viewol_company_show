@@ -440,7 +440,7 @@ export default class Main extends Vue {
 .swiper-pagination {
   margin-bottom: -1rem;
 
-  /deep/ .swiper-pagination-bullet {
+  ::v-deep .swiper-pagination-bullet {
     width: 0.72rem;
     height: 0.38rem;
     background: #4797FD;
