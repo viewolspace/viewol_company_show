@@ -8,6 +8,7 @@ import InvitationType from './views/InvitationType.vue'
 import Message from './views/Message.vue'
 import SignUp from './views/SignUp.vue'
 import CheckIn from './views/CheckIn.vue'
+import Live from './views/Live.vue'
 import Innovation from './views/Innovation.vue'
 import InnovationIntroduce from '@/components/innovation/Introduce.vue'
 import InnovationVote from '@/components/innovation/Vote.vue'
@@ -34,6 +35,12 @@ export default new Router({
       path: '/activity',
       name: 'activity',
       component: Activity
+    },
+
+    {
+      path: '/live',
+      name: 'live',
+      component: Live
     },
     {
       path: '/innovation',
