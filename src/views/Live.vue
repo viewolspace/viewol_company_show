@@ -48,6 +48,7 @@
 
 <script>
 import { Component, Vue } from 'vue-property-decorator'
+import wxApi from '@/helpers/share'
 
 export default @Component({})
 class Live extends Vue {
@@ -68,19 +69,32 @@ class Live extends Vue {
       url: 'https://as.alltuu.com/album/1526351517/'
     },
     {
-      title: '建筑消防安全论坛',
-      url: 'https://as.alltuu.com/album/1445421246/'
-
-    },
-    {
-      title: '新能源消防安全论坛',
-      url: 'https://as.alltuu.com/album/1670232319/'
-    },
-    {
       title: '新时代 新挑战 新方案防火论坛',
       url: 'https://as.alltuu.com/album/1222610773/'
     }
   ]
+
+  mounted () {
+    wxApi.register(() => {
+      this.setShareMessage()
+    })
+  }
+
+  setShareMessage () {
+    const { detail } = this
+    const link = window.location.href.replace(window.location.search, '')
+    wxApi.shareTimeline({
+      title: '中国国际消防设备技术交流展览会', // 分享标题
+      link,
+      imgUrl: 'https://www.view-ol.com/2023zblogo.jpg' // 分享图标
+    })
+    wxApi.shareAppMessage({
+      title: '中国国际消防设备技术交流展览会', // 分享标题
+      desc: detail.companyName + '邀请您在线投票-创新产品', // 分享描述
+      link,
+      imgUrl: 'https://www.view-ol.com/2023zblogo.jpg' // 分享图标
+    })
+  }
 }
 </script>
 
