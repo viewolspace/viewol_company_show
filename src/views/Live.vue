@@ -56,21 +56,21 @@ class Live extends Vue {
     {
       title: '开幕式',
       english: 'VIDEO PICTURES',
-      url: 'https://as.alltuu.com/album/1303406104/'
+      url: 'https://v.alltuu.com/r/vYJNR3/'
     },
     {
       title: '第三届智慧消防生态建设论坛',
       date: '10日',
-      url: 'https://as.alltuu.com/album/1670230779/'
+      url: 'https://v.alltuu.com/r/UnQneu/'
     },
     {
       title: '第三届智慧消防生态建设论坛',
       date: '11日',
-      url: 'https://as.alltuu.com/album/1526351517/'
+      url: 'https://v.alltuu.com/r/BJZryi/'
     },
     {
       title: '新时代 新挑战 新方案防火论坛',
-      url: 'https://as.alltuu.com/album/1222610773/'
+      url: 'https://v.alltuu.com/r/NRjUna/'
     }
   ]
 
