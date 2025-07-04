@@ -16,14 +16,14 @@
       <div class="d-flex flex-column align-items-center place-container">
         <img
           class="exhibition-logo"
-          src="@/images/logo.png"
+          src="https://www.view-ol.com/banner/images/show/logo.png"
           alt=""
         >
         <div class="mt-2 welcome">
           欢迎您莅临参观
         </div>
         <div class="location">
-          2023年10月10-13日&nbsp;&nbsp;&nbsp;&nbsp;中国国际展览中心（新馆）
+          2025年10月13-16日&nbsp;&nbsp;&nbsp;&nbsp;中国国际展览中心（新馆）
         </div>
         <div class="mt-3 mb-4 place d-flex flex-column align-items-center">
           <div class="top">

@@ -36,7 +36,7 @@
           class="icon"
         >
         <div class="desc">
-          投票开始：2023-06-15 00:00:00
+          投票开始：2025-06-15 00:00:00
         </div>
       </div>
       <div class="item">
@@ -81,15 +81,15 @@
           type="text"
           placeholder="请输入产品编号 名称"
         >
-        <a @click="toVotePage({keywords})">搜索</a>
+        <a @click="toVotePage({ keywords })">搜索</a>
       </div>
     </div>
     <div class="category-container">
       <div
-        v-for="(item,key) in categoryList"
+        v-for="(item, key) in categoryList"
         :key="key"
         class="item"
-        @click="toVotePage({category:key})"
+        @click="toVotePage({ category: key })"
       >
         {{ item }}
       </div>
@@ -103,25 +103,28 @@
         class="rank-list-top"
       >
         <router-link
-          v-for="(item,index) in topProducts"
+          v-for="(item, index) in topProducts"
           :key="item.productId"
-          :to="{name:'innovation_vote_product',params:{id:item.productId}}"
+          :to="{
+            name: 'innovation_vote_product',
+            params: { id: item.productId },
+          }"
           class="item"
         >
           <img
-            v-if="index===0"
+            v-if="index === 0"
             class="rank-logo"
             src="@/images/innovation/rank_1.png"
             alt=""
           >
           <img
-            v-if="index===1"
+            v-if="index === 1"
             class="rank-logo"
             src="@/images/innovation/rank_2.png"
             alt=""
           >
           <img
-            v-if="index===2"
+            v-if="index === 2"
             class="rank-logo"
             src="@/images/innovation/rank_3.png"
             alt=""
@@ -149,7 +152,10 @@
         <router-link
           v-for="(item, index) in bottomProducts"
           :key="item.productId"
-          :to="{name:'innovation_vote_product',params:{id:item.productId}}"
+          :to="{
+            name: 'innovation_vote_product',
+            params: { id: item.productId },
+          }"
           class="item"
         >
           <div class="rank-no">
@@ -176,10 +182,10 @@
         </router-link>
         <div
           class="more"
-          @click="more=!more"
+          @click="more = !more"
         >
           <img
-            :class="{'show':more}"
+            :class="{ show: more }"
             src="@/images/innovation/icon_more.png"
             alt=""
           >
@@ -194,13 +200,14 @@ import { Component, Vue } from 'vue-property-decorator'
 import moment from 'moment'
 import * as ProductAPI from '@/api/product'
 
-export default @Component({})
+export default
+@Component({})
 class Rank extends Vue {
-  now = moment()
-  startTime = '2023-06-15 00:00:00'
-  endTime = '2023-07-10 23:59:59'
-  keywords = ''
-  more = false
+  now = moment();
+  startTime = '2025-06-15 00:00:00';
+  endTime = '2025-07-10 23:59:59';
+  keywords = '';
+  more = false;
   categoryList = {
     1: '全部',
     2: '智慧消防',
@@ -208,15 +215,15 @@ class Rank extends Vue {
     4: '应急救援装备及职业健康',
     5: '火灾防护及逃生自救',
     6: '消防科研及火灾事故'
-  }
+  };
 
   summary = {
     pro: 0,
     vote: 0,
     join: 0
-  }
+  };
 
-  products = []
+  products = [];
 
   get topProducts () {
     return this.products.slice(0, 3)
@@ -246,7 +253,16 @@ class Rank extends Vue {
     const minute = Math.floor(minutes)
     const seconds = (minutes - minute) * 60
     const second = Math.floor(seconds)
-    return day + '天' + _.padStart(String(hour), '0') + '小时' + _.padStart(String(minute), '0') + '分钟' + _.padStart(String(second), '0') + '秒'
+    return (
+      day +
+      '天' +
+      _.padStart(String(hour), '0') +
+      '小时' +
+      _.padStart(String(minute), '0') +
+      '分钟' +
+      _.padStart(String(second), '0') +
+      '秒'
+    )
   }
 
   mounted () {
@@ -265,7 +281,9 @@ class Rank extends Vue {
   }
 
   startCountDown () {
-    setInterval(() => { this.now = moment() }, 1000)
+    setInterval(() => {
+      this.now = moment()
+    }, 1000)
   }
 
   toVotePage (query) {
@@ -284,8 +302,8 @@ class Rank extends Vue {
     margin-top: 0.5rem;
     width: 18.91rem;
     height: 3.05rem;
-    border: 1px solid #A0C9FD;
-    background: linear-gradient(0deg, #0251B6 0%, #0168EC 49%, #0251B6 100%);
+    border: 1px solid #a0c9fd;
+    background: linear-gradient(0deg, #0251b6 0%, #0168ec 49%, #0251b6 100%);
     box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.29);
     border-radius: 2rem;
     display: flex;
@@ -297,7 +315,7 @@ class Rank extends Vue {
     .divide {
       width: 1px;
       height: 1.44rem;
-      background: #D72316;
+      background: #d72316;
     }
 
     .item {
@@ -310,13 +328,13 @@ class Rank extends Vue {
       .number {
         font-size: 0.87rem;
         font-weight: 500;
-        color: #FFFFFF;
+        color: #ffffff;
       }
 
       .desc {
         font-size: 12px;
         font-weight: 400;
-        color: #FFE200;
+        color: #ffe200;
       }
     }
   }
@@ -325,8 +343,8 @@ class Rank extends Vue {
     margin-top: -1.5rem;
     padding: 2rem 1.5rem 1.08rem;
     height: 11.14rem;
-    background: #0251B6;
-    border: 1px solid #A0C9FD;
+    background: #0251b6;
+    border: 1px solid #a0c9fd;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -338,9 +356,9 @@ class Rank extends Vue {
       padding: 0 0.33rem;
       width: 100%;
       align-items: center;
-      background: #0259C7;
+      background: #0259c7;
       height: 1.64rem;
-      border: 1px solid #A0C9FD;
+      border: 1px solid #a0c9fd;
       border-radius: 1rem;
 
       .icon {
@@ -352,10 +370,10 @@ class Rank extends Vue {
         font-size: 12px;
         white-space: nowrap;
         font-weight: 400;
-        color: #FFFFFF;
+        color: #ffffff;
 
         .highlight {
-          color: #FFE204;
+          color: #ffe204;
         }
       }
     }
@@ -364,17 +382,17 @@ class Rank extends Vue {
   .search-container {
     margin-top: 0.5rem;
     padding: 1.16rem 1.5rem 1.2rem;
-    background: #0251B6;
-    border: 1px solid #A0C9FD;
+    background: #0251b6;
+    border: 1px solid #a0c9fd;
     width: 100%;
 
     .content {
-      background: #A0C9FD;
-      border: 1px solid #A0C9FD;
+      background: #a0c9fd;
+      border: 1px solid #a0c9fd;
       border-radius: 1rem;
       display: flex;
       align-items: center;
-      padding-left: .47rem;
+      padding-left: 0.47rem;
 
       img {
         width: 0.83rem;
@@ -394,13 +412,13 @@ class Rank extends Vue {
         width: 5.39rem;
         height: 1.64rem;
         line-height: 1.64rem;
-        background: #0259C7;
-        border: 1px solid #A0C9FD;
+        background: #0259c7;
+        border: 1px solid #a0c9fd;
         border-radius: 1rem;
         font-size: 0.85rem;
         text-align: center;
         font-weight: 400;
-        color: #FFFFFF;
+        color: #ffffff;
       }
     }
 
@@ -415,21 +433,20 @@ class Rank extends Vue {
         height: 1.64rem;
         line-height: 1.64rem;
         text-align: center;
-        background: #0259C7;
-        border: 1px solid #A0C9FD;
+        background: #0259c7;
+        border: 1px solid #a0c9fd;
         border-radius: 1rem;
         font-size: 0.85rem;
         font-weight: 400;
-        color: #FFFFFF;
+        color: #ffffff;
       }
     }
-
   }
 
   .category-container {
     margin-top: 0.5rem;
-    background: #0251B6;
-    border: 1px solid #A0C9FD;
+    background: #0251b6;
+    border: 1px solid #a0c9fd;
     width: 100%;
     padding: 1rem 1.5rem 1.48rem;
     display: flex;
@@ -437,22 +454,21 @@ class Rank extends Vue {
     justify-content: space-between;
 
     .item {
-      margin-top: .5rem;
+      margin-top: 0.5rem;
       width: 9.03rem;
       max-width: 49%;
       height: 1.64rem;
       line-height: 1.64rem;
       text-align: center;
-      background: #0259C7;
-      border: 1px solid #A0C9FD;
+      background: #0259c7;
+      border: 1px solid #a0c9fd;
       border-radius: 1rem;
       font-size: 0.76rem;
       font-weight: 400;
-      color: #FFFFFF;
+      color: #ffffff;
 
       &.active {
-        color: #FFE100;
-
+        color: #ffe100;
       }
     }
   }
@@ -469,30 +485,30 @@ class Rank extends Vue {
       height: 1.58rem;
       line-height: 1.58rem;
       text-align: center;
-      border: 1px solid #A0C9FD;
-      background: linear-gradient(0deg, #0251B6 0%, #0168EC 49%, #0251B6 100%);
+      border: 1px solid #a0c9fd;
+      background: linear-gradient(0deg, #0251b6 0%, #0168ec 49%, #0251b6 100%);
       box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.29);
       border-radius: 1rem;
       font-size: 1.09rem;
       font-weight: 500;
-      color: #FFE204;
+      color: #ffe204;
       position: relative;
       z-index: 99;
     }
 
     .rank-list-top {
-      margin-top: -.8rem;
+      margin-top: -0.8rem;
       width: 100%;
       padding: 2rem 1rem 1.5rem;
-      border: 1px solid #A0C9FD;
+      border: 1px solid #a0c9fd;
 
       .item {
         display: flex;
         align-items: center;
         width: 100%;
         height: 7.28rem;
-        background: #0259C7;
-        border: 1px solid #A0C9FD;
+        background: #0259c7;
+        border: 1px solid #a0c9fd;
         border-radius: 4rem;
 
         &:not(:first-child) {
@@ -506,21 +522,21 @@ class Rank extends Vue {
         .id {
           font-size: 0.87rem;
           font-weight: bold;
-          color: #FFE204;
+          color: #ffe204;
         }
 
         .name {
           margin-top: 0.3rem;
           font-size: 0.85rem;
           font-weight: 400;
-          color: #FFFFFF;
+          color: #ffffff;
         }
 
         .company {
           margin-top: 0.8rem;
           font-size: 0.65rem;
           font-weight: 400;
-          color: #FFFFFF;
+          color: #ffffff;
         }
 
         .sum {
@@ -528,7 +544,7 @@ class Rank extends Vue {
           height: 0.77rem;
           font-size: 0.85rem;
           font-weight: 400;
-          color: #FFE204;
+          color: #ffe204;
         }
       }
     }
@@ -537,13 +553,13 @@ class Rank extends Vue {
       width: 100%;
       margin-top: 0.58rem;
       position: relative;
-      background: #0259C7;
-      border: 1px solid #A0C9FD;
-      padding: 1.5rem .69rem 1.5rem .98rem;
+      background: #0259c7;
+      border: 1px solid #a0c9fd;
+      padding: 1.5rem 0.69rem 1.5rem 0.98rem;
       margin-bottom: 1rem;
 
       &:before {
-        content: '';
+        content: "";
         position: absolute;
         width: 1.92rem;
         height: 1.5rem;
@@ -561,7 +577,7 @@ class Rank extends Vue {
         .rank-no {
           font-size: 0.87rem;
           font-weight: 500;
-          color: #FFE204;
+          color: #ffe204;
           width: 1.5rem;
         }
 
@@ -571,14 +587,14 @@ class Rank extends Vue {
           align-items: center;
           height: 3.56rem;
           padding: 0 0.5rem;
-          background: #014CAB;
-          border: 1px solid #A0C9FD;
+          background: #014cab;
+          border: 1px solid #a0c9fd;
           border-radius: 2rem;
 
           .logo {
             width: 2.5rem;
             height: 2.5rem;
-            background: #C9C7C8;
+            background: #c9c7c8;
             border-radius: 50%;
             overflow: hidden;
             margin-right: 0.36rem;
@@ -590,13 +606,13 @@ class Rank extends Vue {
             .id {
               font-size: 0.87rem;
               font-weight: bold;
-              color: #FFE204;
+              color: #ffe204;
             }
 
             .name {
               font-size: 0.76rem;
               font-weight: 400;
-              color: #FFFFFF;
+              color: #ffffff;
             }
           }
 
@@ -604,10 +620,9 @@ class Rank extends Vue {
             margin-left: 0.88rem;
             font-size: 0.85rem;
             font-weight: 400;
-            color: #FFE204;
+            color: #ffe204;
           }
         }
-
       }
 
       .more {
@@ -618,7 +633,7 @@ class Rank extends Vue {
 
         img {
           width: 1rem;
-          background: #FFFFFF;
+          background: #ffffff;
           border-radius: 1rem;
           overflow: hidden;
 
@@ -629,6 +644,5 @@ class Rank extends Vue {
       }
     }
   }
-
 }
 </style>

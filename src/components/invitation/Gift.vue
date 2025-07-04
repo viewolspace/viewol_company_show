@@ -8,7 +8,7 @@
     </div>
     <img
       style="width: 100%;margin-top: -2.5rem;"
-      src="@/images/invitation/gift/1.png"
+      src="https://www.view-ol.com/banner/images/show/invitation/gift/1.png"
       alt=""
     >
     <div class="name">
@@ -16,7 +16,7 @@
     </div>
     <img
       style="width: 12.63rem;margin-top: 0.86rem;"
-      src="@/images/invitation/gift/2.png"
+      src="https://www.view-ol.com/banner/images/show/invitation/gift/2.png"
       alt=""
     >
     <div class="place">
@@ -27,7 +27,7 @@
     </div>
     <div>
       <img
-        src="@/images/invitation/gift/3.png"
+        src="https://www.view-ol.com/banner/images/show/invitation/gift/3.png"
         alt=""
       >
     </div>
@@ -38,7 +38,7 @@
       alt=""
     >
     <div class="time">
-      2023年10月10-13日
+      2025年10月13-16日
     </div>
     <div class="location">
       中国国际展览中心（新馆）

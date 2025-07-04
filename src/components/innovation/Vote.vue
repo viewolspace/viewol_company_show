@@ -36,7 +36,7 @@
           class="icon"
         >
         <div class="desc">
-          投票开始：2023-06-15 00:00:00
+          投票开始：2025-06-15 00:00:00
         </div>
       </div>
       <div class="item">
@@ -86,13 +86,13 @@
       <div class="more">
         <router-link
           class="action"
-          :to="{name:'innovation_introduce'}"
+          :to="{ name: 'innovation_introduce' }"
         >
           查看介绍
         </router-link>
         <router-link
           class="action"
-          :to="{name:'innovation_rank'}"
+          :to="{ name: 'innovation_rank' }"
         >
           查看排行
         </router-link>
@@ -100,10 +100,10 @@
     </div>
     <div class="category-container">
       <div
-        v-for="(item,key) in categoryList"
+        v-for="(item, key) in categoryList"
         :key="key"
         class="item"
-        :class="{'active':condition.category === key}"
+        :class="{ active: condition.category === key }"
         @click="changeCategory(key)"
       >
         {{ item }}
@@ -113,7 +113,10 @@
       <router-link
         v-for="item in products"
         :key="item.productId"
-        :to="{name:'innovation_vote_product',params:{id:item.productId}}"
+        :to="{
+          name: 'innovation_vote_product',
+          params: { id: item.productId },
+        }"
         class="item"
       >
         <div class="id">
@@ -137,7 +140,7 @@
         </div>
       </router-link>
       <div
-        v-if="products.length ===1"
+        v-if="products.length === 1"
         class="item empty"
       />
     </div>
@@ -145,7 +148,7 @@
       class="load"
       @click="getIdeaProductList(false)"
     >
-      {{ loading ? '加载中' : (complete ? '已全部加载' : '点击加载更多') }}
+      {{ loading ? "加载中" : complete ? "已全部加载" : "点击加载更多" }}
     </div>
   </div>
 </template>
@@ -155,13 +158,14 @@ import { Component, Vue } from 'vue-property-decorator'
 import * as ProductAPI from '@/api/product'
 import moment from 'moment'
 
-export default @Component({})
+export default
+@Component({})
 class Vote extends Vue {
-  now = moment()
-  startTime = '2023-06-15 00:00:00'
-  endTime = '2023-07-10 23:59:59'
-  loading = false
-  complete = false
+  now = moment();
+  startTime = '2025-06-15 00:00:00';
+  endTime = '2025-07-10 23:59:59';
+  loading = false;
+  complete = false;
 
   categoryList = {
     1: '全部',
@@ -170,25 +174,25 @@ class Vote extends Vue {
     4: '应急救援装备及职业健康',
     5: '火灾防护及逃生自救',
     6: '消防科研及火灾事故'
-  }
+  };
 
   condition = {
     keywords: '',
     category: '1'
-  }
+  };
 
   page = {
     current: 1,
     size: 20
-  }
+  };
 
   summary = {
     pro: 0,
     vote: 0,
     join: 0
-  }
+  };
 
-  products = []
+  products = [];
 
   get countdown () {
     const now = this.now
@@ -210,7 +214,16 @@ class Vote extends Vue {
     const minute = Math.floor(minutes)
     const seconds = (minutes - minute) * 60
     const second = Math.floor(seconds)
-    return day + '天' + _.padStart(String(hour), '0') + '小时' + _.padStart(String(minute), '0') + '分钟' + _.padStart(String(second), '0') + '秒'
+    return (
+      day +
+      '天' +
+      _.padStart(String(hour), '0') +
+      '小时' +
+      _.padStart(String(minute), '0') +
+      '分钟' +
+      _.padStart(String(second), '0') +
+      '秒'
+    )
   }
 
   mounted () {
@@ -227,8 +240,12 @@ class Vote extends Vue {
 
   getDefaultCondition () {
     const { keywords, category } = this.$route.query
-    if (keywords) { this.condition.keywords = keywords }
-    if (category) { this.condition.category = category }
+    if (keywords) {
+      this.condition.keywords = keywords
+    }
+    if (category) {
+      this.condition.category = category
+    }
   }
 
   changeCategory (category) {
@@ -271,7 +288,9 @@ class Vote extends Vue {
   }
 
   startCountDown () {
-    setInterval(() => { this.now = moment() }, 1000)
+    setInterval(() => {
+      this.now = moment()
+    }, 1000)
   }
 }
 </script>
@@ -286,8 +305,8 @@ class Vote extends Vue {
     margin-top: 0.5rem;
     width: 18.91rem;
     height: 3.05rem;
-    border: 1px solid #A0C9FD;
-    background: linear-gradient(0deg, #0251B6 0%, #0168EC 49%, #0251B6 100%);
+    border: 1px solid #a0c9fd;
+    background: linear-gradient(0deg, #0251b6 0%, #0168ec 49%, #0251b6 100%);
     box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.29);
     border-radius: 2rem;
     display: flex;
@@ -299,7 +318,7 @@ class Vote extends Vue {
     .divide {
       width: 1px;
       height: 1.44rem;
-      background: #D72316;
+      background: #d72316;
     }
 
     .item {
@@ -312,13 +331,13 @@ class Vote extends Vue {
       .number {
         font-size: 0.87rem;
         font-weight: 500;
-        color: #FFFFFF;
+        color: #ffffff;
       }
 
       .desc {
         font-size: 12px;
         font-weight: 400;
-        color: #FFE200;
+        color: #ffe200;
       }
     }
   }
@@ -327,8 +346,8 @@ class Vote extends Vue {
     margin-top: -1.5rem;
     padding: 2rem 1.5rem 1.08rem;
     height: 11.14rem;
-    background: #0251B6;
-    border: 1px solid #A0C9FD;
+    background: #0251b6;
+    border: 1px solid #a0c9fd;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -340,9 +359,9 @@ class Vote extends Vue {
       padding: 0 0.33rem;
       width: 100%;
       align-items: center;
-      background: #0259C7;
+      background: #0259c7;
       height: 1.64rem;
-      border: 1px solid #A0C9FD;
+      border: 1px solid #a0c9fd;
       border-radius: 1rem;
 
       .icon {
@@ -354,10 +373,10 @@ class Vote extends Vue {
         font-size: 12px;
         white-space: nowrap;
         font-weight: 400;
-        color: #FFFFFF;
+        color: #ffffff;
 
         .highlight {
-          color: #FFE204;
+          color: #ffe204;
         }
       }
     }
@@ -366,17 +385,17 @@ class Vote extends Vue {
   .search-container {
     margin-top: 0.5rem;
     padding: 1.16rem 1.5rem 1.2rem;
-    background: #0251B6;
-    border: 1px solid #A0C9FD;
+    background: #0251b6;
+    border: 1px solid #a0c9fd;
     width: 100%;
 
     .content {
-      background: #A0C9FD;
-      border: 1px solid #A0C9FD;
+      background: #a0c9fd;
+      border: 1px solid #a0c9fd;
       border-radius: 1rem;
       display: flex;
       align-items: center;
-      padding-left: .47rem;
+      padding-left: 0.47rem;
 
       img {
         width: 0.83rem;
@@ -396,13 +415,13 @@ class Vote extends Vue {
         width: 5.39rem;
         height: 1.64rem;
         line-height: 1.64rem;
-        background: #0259C7;
-        border: 1px solid #A0C9FD;
+        background: #0259c7;
+        border: 1px solid #a0c9fd;
         border-radius: 1rem;
         font-size: 0.85rem;
         text-align: center;
         font-weight: 400;
-        color: #FFFFFF;
+        color: #ffffff;
       }
     }
 
@@ -417,22 +436,21 @@ class Vote extends Vue {
         height: 1.64rem;
         line-height: 1.64rem;
         text-align: center;
-        background: #0259C7;
-        border: 1px solid #A0C9FD;
+        background: #0259c7;
+        border: 1px solid #a0c9fd;
         border-radius: 1rem;
         font-size: 0.85rem;
         font-weight: 400;
-        color: #FFFFFF;
+        color: #ffffff;
         text-decoration: none;
       }
     }
-
   }
 
   .category-container {
     margin-top: 0.5rem;
-    background: #0251B6;
-    border: 1px solid #A0C9FD;
+    background: #0251b6;
+    border: 1px solid #a0c9fd;
     width: 100%;
     padding: 1rem 1.5rem 1.48rem;
     display: flex;
@@ -440,22 +458,21 @@ class Vote extends Vue {
     justify-content: space-between;
 
     .item {
-      margin-top: .5rem;
+      margin-top: 0.5rem;
       width: 9.03rem;
       max-width: 49%;
       height: 1.64rem;
       line-height: 1.64rem;
       text-align: center;
-      background: #0259C7;
-      border: 1px solid #A0C9FD;
+      background: #0259c7;
+      border: 1px solid #a0c9fd;
       border-radius: 1rem;
       font-size: 0.76rem;
       font-weight: 400;
-      color: #FFFFFF;
+      color: #ffffff;
 
       &.active {
-        color: #FFE100;
-
+        color: #ffe100;
       }
     }
   }
@@ -473,8 +490,8 @@ class Vote extends Vue {
       flex-direction: column;
       align-items: center;
       width: 48%;
-      background: #A0C9FD;
-      border: 1px solid #A0C9FD;
+      background: #a0c9fd;
+      border: 1px solid #a0c9fd;
 
       &.empty {
         background: transparent;
@@ -485,12 +502,12 @@ class Vote extends Vue {
         width: 5.39rem;
         height: 1.14rem;
         line-height: 1.14rem;
-        background: #0251B6;
-        border: 1px solid #A0C9FD;
+        background: #0251b6;
+        border: 1px solid #a0c9fd;
         border-radius: 1rem;
         font-size: 0.76rem;
         font-weight: 400;
-        color: #FEE302;
+        color: #fee302;
         text-align: center;
         position: relative;
         z-index: 99;
@@ -500,8 +517,8 @@ class Vote extends Vue {
         margin-top: -9px;
         width: 9.88rem;
         height: 9.88rem;
-        background: #FFFFFF;
-        border: 1px solid #0251B6;
+        background: #ffffff;
+        border: 1px solid #0251b6;
         border-radius: 1rem;
         overflow: hidden;
         object-fit: cover;
@@ -511,7 +528,7 @@ class Vote extends Vue {
         margin-top: 0.7rem;
         font-size: 0.76rem;
         font-weight: 400;
-        color: #D72316;
+        color: #d72316;
       }
 
       .desc {
@@ -519,7 +536,7 @@ class Vote extends Vue {
         font-size: 0.76rem;
         width: 9.06rem;
         height: 4rem;
-        color: #01377C;
+        color: #01377c;
         text-align: center;
       }
 
@@ -528,13 +545,18 @@ class Vote extends Vue {
         width: 5.39rem;
         height: 1.64rem;
         line-height: 1.64rem;
-        border: 1px solid #A0C9FD;
-        background: linear-gradient(0deg, #0251B6 0%, #0168EC 49%, #0251B6 100%);
+        border: 1px solid #a0c9fd;
+        background: linear-gradient(
+          0deg,
+          #0251b6 0%,
+          #0168ec 49%,
+          #0251b6 100%
+        );
         box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.52);
         border-radius: 1rem;
         font-size: 0.85rem;
         font-weight: 400;
-        color: #FFFFFF;
+        color: #ffffff;
         text-decoration: none;
         text-align: center;
       }

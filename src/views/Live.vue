@@ -2,7 +2,7 @@
   <div class="content-container">
     <div class="banner-container">
       <img
-        src="@/images/live/banner.png"
+        src="https://www.view-ol.com/banner/images/show/live/banner.png"
         alt=""
       >
     </div>

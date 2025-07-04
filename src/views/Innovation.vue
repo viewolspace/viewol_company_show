@@ -2,7 +2,7 @@
   <div class="innovation-container">
     <div class="nav">
       <img
-        src="@/images/innovation/nav.png"
+        src="https://www.view-ol.com/banner/images/show/innovation/nav.png"
         alt=""
       >
     </div>

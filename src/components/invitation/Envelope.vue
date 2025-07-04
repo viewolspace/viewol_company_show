@@ -16,7 +16,7 @@
       我司展位号
     </div>
     <div class="time">
-      2023年10月10-13日
+      2025年10月13-16日
     </div>
     <div class="location">
       中国国际展览中心（新馆）
