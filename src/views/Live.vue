@@ -56,21 +56,35 @@ class Live extends Vue {
     {
       title: '开幕式',
       english: 'VIDEO PICTURES',
-      url: 'https://v09.alltuu.com/r/vYJNR3/'
+      url: 'https://v02.m.alltuu.com/r/NnI7Rj'
     },
     {
-      title: '第三届智慧消防生态建设论坛',
-      date: '10日',
-      url: 'https://v09.alltuu.com/r/UnQneu/'
+      title: '第三届建筑防火创新发展大会',
+      url: 'https://v02.m.alltuu.com/r/vyq2Mn'
     },
     {
-      title: '第三届智慧消防生态建设论坛',
-      date: '11日',
-      url: 'https://v09.alltuu.com/r/BJZryi/'
+      title: '第二届中国消防协会标准化发展大会',
+      url: 'https://v02.m.alltuu.com/r/6JZv2y'
     },
     {
-      title: '新时代 新挑战 新方案防火论坛',
-      url: 'https://v09.alltuu.com/r/NRjUna/'
+      title: '清洁高效灭火技术论坛',
+      url: 'https://v02.m.alltuu.com/r/iEjauy'
+    },
+    {
+      title: '火灾监测预警技术',
+      url: 'https://v02.m.alltuu.com/r/v6B7Rz'
+    },
+    {
+      title: '防火阻燃技术论坛',
+      url: 'https://v02.m.alltuu.com/r/ZJVzIv'
+    },
+    {
+      title: '电子厂房和数据中心火灾风险防控论坛',
+      url: 'https://v02.m.alltuu.com/r/nYv6nu'
+    },
+    {
+      title: '消防应急救援装备创新与实战化应用论坛',
+      url: 'https://v02.m.alltuu.com/r/RZ32ei'
     }
   ]
 
@@ -125,7 +139,7 @@ class Live extends Vue {
     border-radius: 1rem;
 
     .title {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       color: #FFE100;
 
       &-max {
