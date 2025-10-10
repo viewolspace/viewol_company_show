@@ -136,6 +136,18 @@ export default new Vuex.Store({
           'Content-Type': 'application/x-www-form-urlencoded'
         }
       })
+    },
+
+    async checkInWithName ({ state }, params) {
+      return await axios.post('/buser/userSignBbsOther', qs.stringify({
+        phone: params.phone,
+        bbsId: params.bbsId,
+        name: params.name
+      }), {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
     }
   },
 

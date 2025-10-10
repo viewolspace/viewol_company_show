@@ -16,6 +16,7 @@ import InnovationVoteProduct from '@/components/innovation/VoteProduct'
 import InnovationRank from '@/components/innovation/Rank.vue'
 import InnovationSearch from '@/components/innovation/Search.vue'
 import InnovationCanvassing from '@/components/innovation/Canvassing.vue'
+import CheckIn2 from './views/CheckIn2.vue'
 
 Vue.use(Router)
 
@@ -107,6 +108,12 @@ export default new Router({
       path: '/check-in',
       name: 'check-in',
       component: CheckIn,
+      props: (route) => ({ bbsId: route.query.bbsId })
+    },
+    {
+      path: '/check-2-in',
+      name: 'check-2-in',
+      component: CheckIn2,
       props: (route) => ({ bbsId: route.query.bbsId })
     },
     {
